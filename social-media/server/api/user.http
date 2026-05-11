@@ -1,19 +1,42 @@
-POST http://localhost:8081/api/user/signup HTTP/1.1
+# REST Client requests for the user/auth endpoints.
+# Open in VS Code with the "REST Client" extension and click "Send Request".
+
+@host = http://localhost:5000
+
+###  Health check
+GET {{host}}/api/setup-check
+
+###  Sign up — modern shape
+POST {{host}}/api/signup
 content-type: application/json
 
 {
-    "email": "testuser5@test.com",
-    "password": "testing123"
+  "email": "test@example.com",
+  "password": "testing123",
+  "displayName": "Test User"
 }
 
-###
-
-POST http://localhost:8081/api/user/login HTTP/1.1
+###  Sign up — legacy alias (used by the chat client)
+POST {{host}}/api/user/signup
 content-type: application/json
 
 {
-    "email": "test@test.com",
-    "password": "test"
+  "email": "legacy@example.com",
+  "password": "testing123",
+  "displayName": "Legacy"
 }
 
-###
+###  Login — sets HttpOnly `session` cookie AND returns a token in the body
+POST {{host}}/api/login
+content-type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "testing123"
+}
+
+###  Who am I — uses the cookie set by the previous request
+GET {{host}}/api/me
+
+###  Logout — clears the cookie
+POST {{host}}/api/logout

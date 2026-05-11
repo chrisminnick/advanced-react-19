@@ -4,78 +4,124 @@ dotenv.config();
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import Post from '../models/post.js';
+
 const router = express.Router();
 
+const SECRET = process.env.ACCESS_TOKEN_SECRET ?? 'dev-only-not-for-production';
+
+// Auth middleware. Accepts either:
+//   - Bearer token in the Authorization header (legacy chat client)
+//   - session cookie (new social-media-rr-v7 / Next.js clients)
 function validateToken(req, res, next) {
-  //get token from request header
-  const authHeader = req.headers['authorization'];
-  const token = authHeader.split(' ')[1];
-  //the request header contains the token "Bearer <token>", split the string and use the second value in the split array.
-  if (token == null) res.sendStatus(400).send('Token not present');
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) {
-      res.status(403).send('Token invalid');
-    } else {
-      req.user = user;
-      next(); //proceed to the next action in the calling function
-    }
-  });
+  const cookieToken = req.cookies?.session;
+  const bearer = req.headers.authorization?.startsWith('Bearer ')
+    ? req.headers.authorization.slice(7)
+    : null;
+  const token = cookieToken ?? bearer;
+
+  if (!token) {
+    return res.status(401).json({ message: 'Token not present' });
+  }
+  try {
+    const user = jwt.verify(token, SECRET);
+    req.user = user;
+    next();
+  } catch {
+    return res.status(403).json({ message: 'Token invalid or expired' });
+  }
 }
 
-// Creating a new post
-router.post('', validateToken, (req, res, next) => {
-  const post = new Post({
-    text: req.body.text,
-  });
-  post.save().then((createdPost) => {
+// Note: `''` as a path means "the router's mount point itself" — i.e. /api/posts.
+// Express 5 prefers '/' for that; both still work but '/' is clearer.
+
+// Create a new post
+router.post('/', validateToken, async (req, res) => {
+  try {
+    const post = new Post({
+      title: req.body.title,
+      body: req.body.body ?? req.body.text,
+      author: req.user?.email ?? 'unknown',
+    });
+    const created = await post.save();
     res.status(201).json({
-      message: 'Post added successfully',
-      post: {
-        ...createdPost,
-        id: createdPost._id,
-      },
+      id: String(created._id),
+      title: created.title,
+      body: created.body,
+      author: created.author,
+      createdAt: created.createdAt,
     });
-  });
+  } catch (err) {
+    res.status(500).json({ message: `Failed to create post: ${err.message}` });
+  }
 });
 
-// Updating a post
-router.put('/:id', validateToken, (req, res, next) => {
-  const post = new Post({
-    _id: req.body.id,
-    text: req.body.text,
-  });
-  Post.updateOne({ _id: req.params.id }, post).then((result) => {
-    res.status(200).json({ message: 'Update successful!' });
-  });
-});
-
-// Getting all the posts
-router.get('', validateToken, (req, res, next) => {
-  Post.find().then((documents) => {
-    res.status(200).json({
-      message: 'Posts fetched successfully!',
-      posts: documents,
-    });
-  });
-});
-
-// Getting a single post
-router.get('/:id', validateToken, (req, res, next) => {
-  Post.findById(req.params.id).then((post) => {
-    if (post) {
-      res.status(200).json(post);
-    } else {
-      res.status(404).json({ message: 'Post not found!' });
+// Update a post
+router.put('/:id', validateToken, async (req, res) => {
+  try {
+    const result = await Post.updateOne(
+      { _id: req.params.id },
+      {
+        title: req.body.title,
+        body: req.body.body ?? req.body.text,
+      }
+    );
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: 'Post not found' });
     }
-  });
+    res.status(200).json({ message: 'Update successful' });
+  } catch (err) {
+    res.status(500).json({ message: `Failed to update post: ${err.message}` });
+  }
 });
 
-// Deleting a post
-router.delete('/:id', validateToken, (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id }).then((result) => {
-    console.log(result);
-    res.status(200).json({ message: 'Post deleted!' });
-  });
+// List all posts
+router.get('/', validateToken, async (req, res) => {
+  try {
+    const posts = await Post.find().sort({ createdAt: -1 }).lean();
+    res.status(200).json(
+      posts.map((p) => ({
+        id: String(p._id),
+        title: p.title,
+        body: p.body,
+        author: p.author,
+        createdAt: p.createdAt,
+      }))
+    );
+  } catch (err) {
+    res.status(500).json({ message: `Failed to list posts: ${err.message}` });
+  }
+});
+
+// Get a single post
+router.get('/:id', validateToken, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id).lean();
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    res.status(200).json({
+      id: String(post._id),
+      title: post.title,
+      body: post.body,
+      author: post.author,
+      createdAt: post.createdAt,
+    });
+  } catch (err) {
+    res.status(500).json({ message: `Failed to fetch post: ${err.message}` });
+  }
+});
+
+// Delete a post
+router.delete('/:id', validateToken, async (req, res) => {
+  try {
+    const result = await Post.deleteOne({ _id: req.params.id });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    res.status(200).json({ message: 'Post deleted' });
+  } catch (err) {
+    res.status(500).json({ message: `Failed to delete post: ${err.message}` });
+  }
 });
 
 export default router;
