@@ -1,31 +1,30 @@
+import React, { createContext } from 'react';
 import axios from 'axios';
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  useCallback,
-} from 'react';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
-  // State to hold the authentication token
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem('currentUser'))
-  );
+class AuthProvider extends React.Component {
+  constructor(props) {
+    super(props);
+    const stored = JSON.parse(localStorage.getItem('currentUser'));
+    this.state = {
+      currentUser: stored,
+    };
+    this.setAuth = this.setAuth.bind(this);
+  }
 
-  // Function to set the authentication token
-  const setAuth = useCallback(
-    (newAuth) => {
-      setCurrentUser(newAuth);
-      console.log('currentUser', currentUser);
-    },
-    [currentUser]
-  );
+  componentDidMount() {
+    this.syncAxiosAndStorage();
+  }
 
-  useEffect(() => {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.currentUser !== this.state.currentUser) {
+      this.syncAxiosAndStorage();
+    }
+  }
+
+  syncAxiosAndStorage() {
+    const { currentUser } = this.state;
     if (currentUser) {
       axios.defaults.headers.common['Authorization'] =
         'Bearer ' + currentUser.token;
@@ -35,25 +34,31 @@ const AuthProvider = ({ children }) => {
       delete axios.defaults.headers.common['Authorization'];
       localStorage.removeItem('currentUser');
     }
-  }, [currentUser]);
+  }
 
-  // Memoized value of the authentication context
-  const contextValue = useMemo(
-    () => ({
-      currentUser,
-      setAuth,
-    }),
-    [currentUser, setAuth]
-  );
+  setAuth(newAuth) {
+    this.setState({ currentUser: newAuth });
+    console.log('currentUser', this.state.currentUser);
+  }
 
-  // Provide the authentication context to the children components
-  return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
-  );
-};
+  render() {
+    const contextValue = {
+      currentUser: this.state.currentUser,
+      setAuth: this.setAuth,
+    };
+    return (
+      <AuthContext.Provider value={contextValue}>
+        {this.props.children}
+      </AuthContext.Provider>
+    );
+  }
+}
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+// Bridge hook so the existing function-component callsites keep working
+// while students are mid-modernization. Lab 1 has students unify on hooks
+// across the whole codebase; this is just so the starter app runs.
+export function useAuth() {
+  return React.useContext(AuthContext);
+}
 
 export default AuthProvider;
