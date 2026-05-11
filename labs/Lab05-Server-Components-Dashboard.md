@@ -366,9 +366,9 @@ export default function FilterToggle({ children }) {
         />
         Show completed only
       </label>
-      <FilterContext.Provider value={completedOnly}>
-        {children}
-      </FilterContext.Provider>
+      {/* In a real version you'd push completedOnly to the URL or a context.
+          For this lab, just render children — the toggle is a UI demo. */}
+      {children}
     </div>
   );
 }
@@ -376,7 +376,7 @@ export default function FilterToggle({ children }) {
 
 ### Step 2 — Use it correctly
 
-The trick: `FilterToggle` is a Client Component, but its `children` can still be the Server Component `<ActivityFeed />`. That's the composition pattern from Module 6 (slide 11).
+The trick: `FilterToggle` is a Client Component, but its `children` can still be the Server Component `<ActivityFeed />`. That's the composition pattern from Module 6's "pass Client Components as children" slide.
 
 ```jsx
 import FilterToggle from './FilterToggle';

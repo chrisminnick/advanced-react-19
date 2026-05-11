@@ -66,9 +66,9 @@ Plus one dedicated **half-module on Day 3** covering:
 
 Across three 7-hour days (~21 hrs total, accounting for breaks and lunch), lab time must equal or exceed lecture/demo time. Target split:
 
-- **Lecture + live demo:** ~10 hrs (≈48%)
-- **Hands-on labs:** ~10.5 hrs (≈50%)
-- **Wrap-up, Q&A, transitions:** ~0.5 hrs (≈2%)
+- **Lecture + live demo:** ~9.75 hrs (≈46%)
+- **Hands-on labs:** ~11.25 hrs (≈54%)
+- **Wrap-up, Q&A, transitions:** absorbed into the breaks/lunch budget per day
 
 To make this work, lectures stay tight and use a **"concept → 5-min live demo → substantial lab"** rhythm. Reference material that doesn't earn its time on screen moves into the slide-deck appendix and the pre-work doc.
 
@@ -76,7 +76,7 @@ To make this work, lectures stay tight and use a **"concept → 5-min live demo 
 
 Each lab below is sized to be substantial (most are 60–90 min) and includes optional "stretch" tasks for the seniors-in-the-room half of the audience.
 
-### Day 1 — Foundations for 2026 (~3.25 hrs lecture / ~3.5 hrs lab)
+### Day 1 — Foundations for 2026 (~3 hrs lecture / ~3.25 hrs lab)
 
 **Welcome + The 2026 React Landscape (45 min, lecture)**
 - React 19 in production: what changed and why it matters
@@ -111,7 +111,7 @@ Each lab below is sized to be substantial (most are 60–90 min) and includes op
 - Compare developer ergonomics, write a one-paragraph reflection
 - Stretch: add a protected nested route with a layout that streams
 
-### Day 2 — Data, State, and the Server (~3.25 hrs lecture / ~3.5 hrs lab)
+### Day 2 — Data, State, and the Server (~3.25 hrs lecture / ~4 hrs lab)
 
 **State Management Decision Framework (60 min, lecture + demos)**
 - The decision tree: local → derived → lifted → context → store → server state
@@ -153,7 +153,7 @@ Each lab below is sized to be substantial (most are 60–90 min) and includes op
 - Identify which components must be `'use client'` and why
 - Stretch: add streaming with multiple Suspense boundaries
 
-### Day 3 — Performance, Quality, and AI (~3.5 hrs lecture / ~3.5 hrs lab)
+### Day 3 — Performance, Quality, and AI (~3.5 hrs lecture / ~4 hrs lab)
 
 **Performance in the Compiler Era (60 min, lecture + demos)**
 - Measuring first: React DevTools profiler, Lighthouse, Core Web Vitals
@@ -208,9 +208,9 @@ Each lab below is sized to be substantial (most are 60–90 min) and includes op
 | Day | Lecture/demo | Lab | Lab share |
 |---|---|---|---|
 | Day 1 | 3 hrs | 3.25 hrs | 52% |
-| Day 2 | 3.25 hrs | 3.5 hrs | 52% |
-| Day 3 | 3.5 hrs | 3.5 hrs | 50% |
-| **Total** | **9.75 hrs** | **10.25 hrs** | **51%** |
+| Day 2 | 3.25 hrs | 4 hrs | 55% |
+| Day 3 | 3.5 hrs | 4 hrs | 53% |
+| **Total** | **9.75 hrs** | **11.25 hrs** | **54%** |
 
 (Remaining ~1 hr/day is breaks, transitions, and the wrap-up Q&A.)
 

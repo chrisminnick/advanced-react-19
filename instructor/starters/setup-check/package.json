@@ -1,0 +1,9 @@
+{
+  "name": "advanced-react-setup-check",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Pre-Day-1 environment verification for the Advanced React course",
+  "scripts": {
+    "check": "node check.js"
+  }
+}

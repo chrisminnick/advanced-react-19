@@ -44,12 +44,11 @@ cd social-media/server
 npm start
 ```
 
-Then in the client:
+Then in the client. **Continue from your Lab 2 RR v7 branch** (or check out `solution/lab-02-rr-v7` for a clean baseline):
 
 ```bash
 cd social-media-rr-v7
-git checkout main
-git pull
+git checkout lab02/<your-name>-rr-v7   # or: git checkout solution/lab-02-rr-v7
 npm install
 npm run dev
 ```
@@ -89,7 +88,7 @@ git checkout -b lab03/<your-name>-rtk
 
 ## Pick your tool (10 min)
 
-Re-read slide 24 of Module 4 — the five-question framework — and apply it to this app. Then pick **one** tool:
+Re-read Module 4's "decision framework — one more time" slide (the five-question framework) and apply it to this app. Then pick **one** tool:
 
 - **Zustand** — minimal API, hook-shaped, no Provider needed. Default for "I just want a small store."
 - **Jotai** — atoms compose into a graph. Strong fit if your derived state is itself complex.

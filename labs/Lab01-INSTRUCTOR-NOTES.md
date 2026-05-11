@@ -81,7 +81,7 @@ There's also a `solution/lab-01-modernize-stretch` branch that adds `useOptimist
 ## What to circulate with
 
 - A tab open to react.dev's React 19 release notes for quick reference
-- The Module 2 deck open to slide 33 (AI mistakes checklist) so you can point students back to it
+- The Module 2 deck open to the "AI hook mistakes — your review checklist" slide so you can point students back to it
 - A sticky note with the four most common AI mistakes from the list above so you can prime targeted hints
 
 ---

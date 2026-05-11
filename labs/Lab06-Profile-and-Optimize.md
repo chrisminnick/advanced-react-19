@@ -49,10 +49,9 @@ For this lab, the starter has been seeded with intentional performance problems.
 cd social-media/server
 npm start
 
-# In another terminal:
+# In another terminal — continue from your Lab 4 branch (or solution/lab-04-tanstack-query):
 cd social-media-rr-v7
-git checkout main
-git pull
+git checkout lab04/<your-name>-tanstack-query   # or: git checkout solution/lab-04-tanstack-query
 npm install
 npm run dev
 ```
@@ -95,7 +94,7 @@ npm run build
 ls -lh dist/assets/*.js
 ```
 
-Note the largest JS chunk size. If you have `vite-plugin-visualizer` or similar installed, run it now and note which dependencies dominate.
+Note the largest JS chunk size. If you have `rollup-plugin-visualizer` (or similar) installed, run it now and note which dependencies dominate.
 
 ### Step 4 — Capture the baseline
 

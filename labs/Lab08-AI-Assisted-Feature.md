@@ -35,12 +35,11 @@ If you finish early, contribute to the class's `ai-mistakes-we-saw.md` doc with 
 
 ## Setup
 
-You're working in `social-media-rr-v7/` (or `social-media-nextjs/` if you'd rather extend the Next.js client). Continue from your most recent green-tests branch.
+You're working in `social-media-rr-v7/` (or `social-media-nextjs/` if you'd rather extend the Next.js client). **Continue from your most recent green-tests branch** (typically `lab07/<your-name>-tests`, or `solution/lab-07-tests` for a clean baseline).
 
 ```bash
 cd social-media-rr-v7
-git checkout main
-git pull
+git checkout lab07/<your-name>-tests   # or: git checkout solution/lab-07-tests
 npm install
 npm run dev
 ```
@@ -59,7 +58,7 @@ git checkout -b lab08/<your-name>-feature
 
 ### Backlog
 
-Pick one. They're roughly ordered by complexity — the lower ones are bigger.
+Pick one. They're roughly ordered by complexity — the lower ones are bigger. (For each option, the lab repo's `lab-backlog/` folder has a fuller spec sketch you can reference.)
 
 **A. Comments on posts.** Each post has a thread of replies. Show count on the post card; expand on click. Server Action to add a comment. Optimistic update.
 
@@ -135,7 +134,7 @@ The AI will produce dramatically better code if it knows your codebase's convent
 
 If your repo has `AGENTS.md` (or `CLAUDE.md`), read it. Confirm it accurately describes the current stack: React 19, RR v7 framework mode, TanStack Query, your chosen state tool, Vitest + RTL + MSW.
 
-If it doesn't exist or is stale, write or update it now. The reference example from Module 9 slide 17 is a good template.
+If it doesn't exist or is stale, write or update it now. The reference "Example AGENTS.md" slide from Module 9 is a good template.
 
 ### Step 2 — Open the lint config
 
@@ -206,7 +205,7 @@ Don't commit the whole feature at the end. Commit each piece as you accept it. Y
 
 ## Phase 4 — Self-review against the checklist (15 min)
 
-Open Module 9's review checklist (slide 25) and walk every file you and the AI produced through it.
+Open Module 9's "AI-generated React review checklist" slide and walk every file you and the AI produced through it.
 
 ### The checklist (copy from Module 9)
 

@@ -467,4 +467,4 @@ server and ship as static HTML.
 - [ ] `BOUNDARY-NOTES.md` cites specific hooks/APIs for each `'use client'`
 - [ ] `BOUNDARY-NOTES.md` mentions which components are deliberately server-rendered
 
-If a submission has all eight, that's an exemplar. If 5–6, passing. Fewer than 4 means the student likely escape-hatched their way past the boundary work — encourage them to revisit Module 6 slide 25.
+If a submission has all eight, that's an exemplar. If 5–6, passing. Fewer than 4 means the student likely escape-hatched their way past the boundary work — encourage them to revisit Module 6's "AI escape-hatch pattern" slide.

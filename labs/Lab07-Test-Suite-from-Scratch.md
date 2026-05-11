@@ -48,15 +48,18 @@ npm start
 
 ### Branch and install testing deps
 
+Start from your most recent green branch (typically `lab06/<your-name>-perf`, or `solution/lab-04-tanstack-query` for a clean baseline):
+
 ```bash
 cd social-media-rr-v7
+git checkout lab06/<your-name>-perf   # or: git checkout solution/lab-04-tanstack-query
 git checkout -b lab07/<your-name>-tests
-npm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/user-event @testing-library/jest-dom msw
+npm install -D vitest@2 @vitejs/plugin-react jsdom @testing-library/react@16 @testing-library/user-event@14 @testing-library/jest-dom@6 msw@2
 ```
 
 ### Wire up Vitest
 
-Add to `vite.config.js`:
+Create `vitest.config.js` (separate from `vite.config.js` so we don't clobber the RR v7 starter's plugin and dev-server config):
 
 ```js
 import { defineConfig } from 'vitest/config';
@@ -66,13 +69,15 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
-    setupFiles: ['./src/test/setup.js'],
+    setupFiles: ['./app/test/setup.js'],
     globals: true,
   },
 });
 ```
 
-Create `src/test/setup.js`:
+Vitest auto-detects `vitest.config.js` and uses it instead of `vite.config.js`.
+
+Create `app/test/setup.js`:
 
 ```js
 import '@testing-library/jest-dom/vitest';
@@ -89,7 +94,7 @@ afterAll(() => server.close());
 export { server };
 ```
 
-Create `src/test/handlers.js`:
+Create `app/test/handlers.js`:
 
 ```js
 import { http, HttpResponse } from 'msw';
@@ -138,7 +143,7 @@ Pick **one** feature to test. Suggested options (pick the one that has a clear U
 - **NewPostForm** — validates input, submits via TanStack Query mutation, optimistic update
 - **LoginForm** — handles correct credentials, wrong credentials, pending state
 
-Write **3–5 behavior-focused tests** for that feature. Save them in `src/components/<Feature>.test.jsx` next to the component.
+Write **3–5 behavior-focused tests** for that feature. Save them in `app/components/<Feature>.test.jsx` next to the component.
 
 ### Rules for your hand-written suite
 

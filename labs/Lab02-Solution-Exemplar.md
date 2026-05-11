@@ -14,13 +14,13 @@ It is not a complete file-by-file dump — it shows the patterns and the key fil
 social-media-rr-v7/
 ├── package.json              ← React 19, RR v7, Vite
 ├── vite.config.js
-├── react-router.config.ts
+├── react-router.config.js
 └── app/
-    ├── routes.ts             ← route configuration
+    ├── routes.js             ← route configuration
     ├── root.jsx              ← app shell
     ├── lib/
-    │   ├── api.server.ts     ← server-only backend client
-    │   └── session.server.ts ← cookie helpers
+    │   ├── api.server.js     ← server-only backend client
+    │   └── session.server.js ← cookie helpers
     └── routes/
         ├── _index.jsx        ← /
         ├── login.jsx
@@ -29,10 +29,10 @@ social-media-rr-v7/
         └── home.jsx          ← protected route
 ```
 
-### Key file: `app/routes.ts`
+### Key file: `app/routes.js`
 
-```ts
-import { type RouteConfig, route, index } from '@react-router/dev/routes';
+```js
+import { route, index } from '@react-router/dev/routes';
 
 export default [
   index('routes/_index.jsx'),
@@ -40,12 +40,10 @@ export default [
   route('signup', 'routes/signup.jsx'),
   route('logout', 'routes/logout.jsx'),
   route('home', 'routes/home.jsx'),
-] satisfies RouteConfig;
+];
 ```
 
-(Plain JS works too if you prefer; the lab is JS-first.)
-
-### Key file: `app/lib/session.server.ts`
+### Key file: `app/lib/session.server.js`
 
 ```js
 import { createCookieSessionStorage } from '@react-router/node';

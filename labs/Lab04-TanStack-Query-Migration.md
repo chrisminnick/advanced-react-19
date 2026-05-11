@@ -69,10 +69,15 @@ These are the things TanStack Query is going to fix.
 
 ### Branch off
 
+Branch off your Lab 3 branch (or `solution/lab-03-zustand` for a clean baseline):
+
 ```bash
+git checkout lab03/<your-name>-<tool>   # or: git checkout solution/lab-03-zustand
 git checkout -b lab04/<your-name>-tanstack-query
-npm install @tanstack/react-query
+npm install @tanstack/react-query@5
 ```
+
+(The `@5` pin matters — TanStack Query's API changed significantly between v4 and v5.)
 
 For the stretch task, you'll also want:
 

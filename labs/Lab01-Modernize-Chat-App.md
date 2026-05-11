@@ -1,7 +1,9 @@
 # Lab 1 — Modernize the Chat App
 
 **Time:** 90 minutes
+
 **Format:** Hands-on. Work alone or in pairs.
+
 **Goal:** Take a deliberately legacy React-18-on-CRA chat app and modernize it to React 19 + Vite + function components + hooks. Use an AI assistant for the first pass, then catch and fix what it got wrong.
 
 ---
@@ -94,7 +96,7 @@ Run `npm run dev` after each AI batch. Fix runtime errors. Common failure points
 - The AI converted `componentDidMount` to a `useEffect(() => {...}, [])` — but moved a value into the effect that should be in the dep array. You'll see it firing once when it should fire every time, or vice versa.
 - The AI wrapped state setters in their own `useEffect`. Often wrong — these should be inside the event handlers that triggered them.
 - The AI converted `this.setState({ count: this.state.count + 1 })` to `setCount(count + 1)`. That's race-prone. Use `setCount(n => n + 1)`.
-- The AI broke socket event handler cleanup, leading to multiple subscriptions per render.
+- The AI broke socket event handler cleanup, leading to multiple subscriptions stacking up across re-renders.
 
 You don't need to ship a version that's identical to the AI's first draft — fix what's wrong as you go.
 
@@ -118,7 +120,7 @@ This is the part of the lab the rest of the course depends on. Don't skip it.
 
 ### Step 1 — Use the checklist from Module 2
 
-Open the slide deck for Module 2 to "AI hook mistakes — your review checklist" (slide 33). You're looking for:
+Open the slide deck for Module 2 to the "AI hook mistakes — your review checklist" slide. You're looking for:
 
 - `useState` for derived data that should be a plain calculation
 - `useEffect` to reset state on prop change (use a `key` prop instead)
@@ -184,7 +186,7 @@ async function handleSend(formData) {
 }
 ```
 
-Render `optimisticMessages` instead of `messages`. Add a CSS class for `.sending` that dims the bubble until the server confirms.
+Wire `handleSend` as a form action — `<form action={handleSend}>` — so React treats it as a transition. (Without that, the optimistic value reverts on the next render.) Render `optimisticMessages` instead of `messages`. Add a CSS class for `.sending` that dims the bubble until the server confirms.
 
 If the AI helps you with this — review the `useOptimistic` setup carefully. AI tools as of mid-2026 still get the reducer signature wrong about a third of the time.
 
