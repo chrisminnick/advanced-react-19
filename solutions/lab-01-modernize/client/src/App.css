@@ -1,0 +1,45 @@
+.App {
+  padding-top: 1.5rem;
+  max-width: 960px;
+}
+
+.chat-window {
+  height: 60vh;
+  overflow-y: auto;
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  background: #fafafa;
+}
+
+.message {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: white;
+  border: 1px solid #ececec;
+}
+
+.message.mine {
+  background: #d9efff;
+  border-color: #b6dcff;
+  margin-left: auto;
+  max-width: 75%;
+}
+
+.message.other {
+  margin-right: auto;
+  max-width: 75%;
+}
+
+.message .author {
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 0.15rem;
+}
+
+.message.sending {
+  opacity: 0.55;
+  font-style: italic;
+}
