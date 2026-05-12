@@ -1,0 +1,8 @@
+/* APPEND to app/app.css for the stretch solution. */
+
+.end-of-feed {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  padding: 1rem 0 2rem;
+}

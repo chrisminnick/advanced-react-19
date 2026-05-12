@@ -1,18 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import './App.css';
-
-function App() {
-  return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
-          <Route path="/aboutus" element={<h1>About Us</h1>} />
-        </Routes>
-      </Router>
-    </>
-  );
+// Legacy entry point. The v2 demo uses createBrowserRouter + RouterProvider
+// directly from main.jsx — see src/router.jsx for the route tree.
+// This file is kept as a stub so older branches that imported `App` don't
+// fail at build time; nothing renders it.
+export default function App() {
+  return null;
 }
-
-export default App;

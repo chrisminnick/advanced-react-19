@@ -1,0 +1,59 @@
+/* APPEND these to app/app.css. They cover the new skeleton, error panel,
+   and "sending" optimistic-post styles. */
+
+/* --- Optimistic-post styling --- */
+
+.post-sending {
+  opacity: 0.55;
+  font-style: italic;
+}
+
+/* --- Skeleton --- */
+
+.post-skeleton {
+  background: white;
+}
+
+.skeleton-block {
+  background: linear-gradient(90deg, #eef2f7 25%, #f8fafc 37%, #eef2f7 63%);
+  background-size: 400% 100%;
+  border-radius: 0.25rem;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+.skeleton-title { height: 1.1rem; width: 50%; margin-bottom: 0.5rem; }
+.skeleton-body  { height: 0.9rem; width: 100%; margin-bottom: 0.5rem; }
+.skeleton-meta  { height: 0.7rem; width: 30%; }
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: 0   50%; }
+}
+
+/* --- Error panel --- */
+
+.error-panel {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #9f1239;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+}
+
+.error-panel h2 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.error-panel button {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  background: white;
+  color: #9f1239;
+  border: 1px solid #fecdd3;
+  border-radius: 0.375rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.error-panel button:hover { background: #fce7e7; }

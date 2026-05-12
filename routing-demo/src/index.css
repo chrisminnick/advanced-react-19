@@ -1,68 +1,152 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  color: #0f172a;
+  background: #f8fafc;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* { box-sizing: border-box; }
+
+body { margin: 0; min-height: 100vh; }
+
+.shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  position: relative;
 }
 
-body {
-  margin: 0;
+.shell header {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.shell header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.shell nav {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  gap: 1rem;
+  font-size: 0.95rem;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.shell nav a {
+  color: #00b8d9;
+  text-decoration: none;
 }
+
+.shell nav a:hover { text-decoration: underline; }
+
+.shell nav a.active {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent 0%, #00b8d9 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: progress 1.2s linear infinite;
+}
+
+@keyframes progress {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
+}
+
+footer {
+  margin-top: 2rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+}
+
+footer code {
+  background: #e2e8f0;
+  padding: 0 0.3rem;
+  border-radius: 0.25rem;
+}
+
+main h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+}
+
+main .muted { color: #64748b; }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  padding: 0.5rem 1rem;
+  background: #00b8d9;
+  color: white;
+  border: 0;
+  border-radius: 0.375rem;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:hover { background: #0096b8; }
+button:disabled { background: #94a3b8; cursor: not-allowed; }
+
+input[type='number'] {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  width: 5rem;
 }
+
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.product-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.product-list .meta {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+dl.kv {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: 0.25rem 1rem;
+  margin: 1rem 0;
+}
+
+dl.kv dt {
+  color: #64748b;
+}
+
+.receipt {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #d1fae5;
+  border: 1px solid #6ee7b7;
+  border-radius: 0.5rem;
+  color: #065f46;
+}
+
+.error-inline,
+.error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 0.5rem;
+  color: #9f1239;
+}
+
+.error h2 { margin: 0 0 0.5rem; }

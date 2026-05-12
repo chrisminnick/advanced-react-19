@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# my-next-app (v2.0)
 
-## Getting Started
+In-class demo for **Module 3 — Routing with RR v7 + Next.js**. Pairs with
+the `routing-demo/` (RR v7) so the instructor can switch between the two
+mid-lecture and compare.
 
-First, run the development server:
+## Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tour for the instructor (~5 minutes)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. **`/`** — `app/page.js`. Pure Server Component. View source: the
+   text is in the HTML response; no client JS for this page.
+2. **`/about`** — Server Component (`page.js`) composing a Client
+   Component (`Counter.js`). Only the counter ships JS; the surrounding
+   prose stays static. The boundary is a single line: `'use client'` at
+   the top of `Counter.js`.
+3. **`/contact-us`** — Server Action via `useActionState` +
+   `useFormStatus`. The action lives in `actions.js` (`'use server'` at
+   the top); the form is a Client Component (`SubscribeForm.js`).
+   Try the failure modes:
+   - Empty email
+   - Invalid email
+   - `boom@example.com` (simulated server error)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Files worth opening on screen
 
-## Learn More
+- `app/layout.js` — root layout, persists across navigations.
+- `app/about/Counter.js` — minimum viable `'use client'`.
+- `app/contact-us/actions.js` — minimum viable `'use server'`.
+- `app/contact-us/SubscribeForm.js` — `useActionState` + `useFormStatus`
+  pairing.
 
-To learn more about Next.js, take a look at the following resources:
+## What changed from v1
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Next.js 14 → **15**, React 18 → **19**.
+- Boilerplate "create-next-app" landing page replaced with content that
+  actually demonstrates the App Router patterns we teach.
+- `/contact-us` upgraded from a stub `<h1>` to a full Server Action
+  example with progressive enhancement (works without JS).
+- `next.config.js` (CommonJS) replaced with `next.config.mjs` (ESM).
+  The old `.js` file is unused and can be deleted.

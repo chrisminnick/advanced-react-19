@@ -1,0 +1,34 @@
+/* APPEND to app/app.css. Reaction bar styles. */
+
+.reaction-bar {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.reaction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 120ms, border-color 120ms;
+}
+
+.reaction:hover { background: #e2e8f0; }
+
+.reaction-mine {
+  background: #cbf1f6;
+  border-color: #00b8d9;
+  color: #0f172a;
+}
+
+.reaction:disabled { opacity: 0.6; cursor: progress; }
+
+.reaction-icon { font-size: 1rem; line-height: 1; }
+.reaction-count { font-variant-numeric: tabular-nums; }
