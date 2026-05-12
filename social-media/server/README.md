@@ -86,6 +86,9 @@ Post response shape: `{ id, title, body, author, createdAt }`.
 
 ## What changed in v2.0
 
+- **`bcryptjs`** (was `bcrypt`) — pure-JS password hashing, no native build
+  step. Drops the Python / node-gyp / VC++ toolchain requirement on
+  Windows. Same API; the import is just `import bcrypt from 'bcryptjs'`.
 - **Express 5** (was 4) — async error handling is built-in.
 - **Mongoose 8** (was 6) — all queries rewritten as `async`/`await` (callback API removed in v7+). Connection no longer passes `useNewUrlParser`.
 - **HttpOnly cookies** for auth, alongside the legacy Bearer-token flow. The Module 10 / Lab 8 security discussion uses this as the worked example.

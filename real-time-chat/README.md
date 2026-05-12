@@ -25,7 +25,7 @@ This project is a real-time chat application built with React, Node.js, Express,
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
 - [JWT](https://jwt.io/)
-- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [bcryptjs](https://www.npmjs.com/package/bcryptjs)
 - [Axios](https://www.npmjs.com/package/axios)
 - [React Router](https://reactrouter.com/)
 

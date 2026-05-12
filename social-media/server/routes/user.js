@@ -3,7 +3,8 @@ dotenv.config();
 
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs'; // Pure-JS replacement for `bcrypt` — same API,
+                               // no native build step (no Python / node-gyp / VC++ toolchain).
 import User from '../models/user.js';
 
 const router = express.Router();

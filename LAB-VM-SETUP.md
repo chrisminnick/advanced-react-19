@@ -12,13 +12,13 @@ in this guide.
 
 ## 1. VM specs
 
-| Resource | Minimum | Recommended |
-|---|---|---|
-| CPU | 4 vCPU | 6 vCPU |
-| RAM | 8 GB | 16 GB |
-| Disk (free) | 20 GB | 40 GB |
-| Display | 1080p | 1440p |
-| Network | Outbound HTTPS to public internet | Same |
+| Resource    | Minimum                           | Recommended |
+| ----------- | --------------------------------- | ----------- |
+| CPU         | 4 vCPU                            | 6 vCPU      |
+| RAM         | 8 GB                              | 16 GB       |
+| Disk (free) | 20 GB                             | 40 GB       |
+| Display     | 1080p                             | 1440p       |
+| Network     | Outbound HTTPS to public internet | Same        |
 
 Node + npm + MongoDB + VS Code + a couple of dev servers running
 simultaneously can sit at 4–5 GB resident. 8 GB is the floor; below that,
@@ -53,11 +53,6 @@ Apply before installing anything else.
 5. Enable Long Path Support (registry):
    `HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled = 1`.
    `node_modules` paths exceed 260 chars on every install of this course.
-6. Create a non-admin local user `student` with a known password. Auto-login
-   for that user is fine for a training environment — leave it off if
-   the venue's security policy disallows it.
-7. Set Windows Terminal as the default terminal (Settings → Privacy &
-   security → For developers → Terminal: **Windows Terminal**).
 
 ---
 
@@ -71,14 +66,14 @@ Download: <https://git-scm.com/download/win>
 
 Installer choices that matter:
 
-| Prompt | Choice |
-|---|---|
-| Default editor | **Visual Studio Code** (chosen later — picks itself up) |
-| PATH adjustments | **Git from the command line and also from 3rd-party software** |
-| HTTPS transport | **OpenSSL** |
-| Line endings | **Checkout as-is, commit Unix-style line endings** (the lab repo enforces LF) |
-| Terminal emulator | **Use Windows' default console window** |
-| Git credential manager | **Git Credential Manager** |
+| Prompt                 | Choice                                                                        |
+| ---------------------- | ----------------------------------------------------------------------------- |
+| Default editor         | **Visual Studio Code** (chosen later — picks itself up)                       |
+| PATH adjustments       | **Git from the command line and also from 3rd-party software**                |
+| HTTPS transport        | **OpenSSL**                                                                   |
+| Line endings           | **Checkout as-is, commit Unix-style line endings** (the lab repo enforces LF) |
+| Terminal emulator      | **Use Windows' default console window**                                       |
+| Git credential manager | **Git Credential Manager**                                                    |
 
 Post-install verification (in a fresh terminal):
 
@@ -100,9 +95,16 @@ training VMs; they reach EOL sooner than the cohort cycle.
 
 Installer choices that matter:
 
-- **Automatically install necessary tools** — check the box. This pulls
-  in Chocolatey + Visual Studio Build Tools + Python so `npm install`
-  doesn't fail later on packages with native compilation.
+- **64-bit installer.** The standard `.msi` from nodejs.org is 64-bit;
+  do NOT pick the x86 build. A 32-bit Node breaks native-binary
+  installs (notably `bcrypt`'s prebuilt drops). The course swapped to
+  `bcryptjs` so this is no longer fatal, but the architecture
+  mismatch is still a problem for any future native dep.
+- **Automatically install necessary tools** — leave UNCHECKED. The
+  course's deps (after the bcrypt → bcryptjs swap) don't need
+  Python or Visual Studio Build Tools. The "necessary tools" payload
+  adds ~2 GB to disk for nothing. Check it only if you intend to
+  install other native modules later.
 - Default install path is fine (`C:\Program Files\nodejs\`).
 
 Post-install verification:
@@ -337,11 +339,11 @@ have anything to review.
 
 Pre-install **one** of the following on the VM image:
 
-| Assistant | How to install | Notes |
-|---|---|---|
-| **Claude Code** (CLI + VS Code extension) | `npm install -g @anthropic-ai/claude-code` + the `anthropic.claude-code` VS Code extension | First-class course support — referenced by name in lab materials. |
-| **Cursor** (editor replacement) | Download from <https://cursor.com/>, install per-user | Replaces VS Code; if the cohort uses Cursor, skip §3.3 entirely and install Cursor instead. |
-| **GitHub Copilot** (VS Code extension) | `code --install-extension github.copilot github.copilot-chat` | Requires GitHub account + license seat. |
+| Assistant                                 | How to install                                                                             | Notes                                                                                       |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| **Claude Code** (CLI + VS Code extension) | `npm install -g @anthropic-ai/claude-code` + the `anthropic.claude-code` VS Code extension | First-class course support — referenced by name in lab materials.                           |
+| **Cursor** (editor replacement)           | Download from <https://cursor.com/>, install per-user                                      | Replaces VS Code; if the cohort uses Cursor, skip §3.3 entirely and install Cursor instead. |
+| **GitHub Copilot** (VS Code extension)    | `code --install-extension github.copilot github.copilot-chat`                              | Requires GitHub account + license seat.                                                     |
 
 The student will sign in to the assistant on Day 1 with their own
 credentials or a cohort-issued account. The VM image should NOT carry
