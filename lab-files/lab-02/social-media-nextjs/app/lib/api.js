@@ -1,7 +1,7 @@
 // Single source of network calls. Mirrors the RR v7 client's api.js so labs
 // can compare apples-to-apples.
 //
-// Same-origin in dev because next.config.mjs rewrites /api/* to localhost:5000.
+// Same-origin in dev because next.config.mjs rewrites /api/* to localhost:4000.
 // All requests include the session cookie automatically.
 //
 // Don't store auth tokens in localStorage — Module 10 covers why.

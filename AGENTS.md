@@ -8,22 +8,21 @@ forbids without flagging them as a deliberate departure.
 
 ## What this is
 
-`advanced-react-19` is a 3-day instructor-led course (Webucator /
-Watzthis) plus the lab projects students work in. The lab clients are
+`advanced-react-19` is a 3-day instructor-led course plus the lab projects students work in. The lab clients are
 deliberately structured to teach the canonical 2026 React patterns —
 keep them that way.
 
 ## Stack
 
-| Layer | What it is |
-|---|---|
-| React | 19 (function components only, hooks, Server Components where applicable) |
-| Backend | Node 22+, Express 5, Mongoose 8, MongoDB 8 |
-| Auth | JWT in HttpOnly cookie + Bearer-token alias for legacy clients |
-| RR v7 client | Vite 6, React Router 7 framework mode, TanStack Query 5 (server state), Zustand 5 (client state), `react-error-boundary` |
-| Next.js client | Next 15 App Router, React 19, Server Actions, `useActionState` + `useFormStatus` |
-| Testing | Vitest 2, React Testing Library 16, MSW 2, Playwright (e2e only) |
-| Compiler | React Compiler enabled via `babel-plugin-react-compiler` + `eslint-plugin-react-compiler` |
+| Layer          | What it is                                                                                                               |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| React          | 19 (function components only, hooks, Server Components where applicable)                                                 |
+| Backend        | Node 22+, Express 5, Mongoose 8, MongoDB 8                                                                               |
+| Auth           | JWT in HttpOnly cookie + Bearer-token alias for legacy clients                                                           |
+| RR v7 client   | Vite 6, React Router 7 framework mode, TanStack Query 5 (server state), Zustand 5 (client state), `react-error-boundary` |
+| Next.js client | Next 15 App Router, React 19, Server Actions, `useActionState` + `useFormStatus`                                         |
+| Testing        | Vitest 2, React Testing Library 16, MSW 2, Playwright (e2e only)                                                         |
+| Compiler       | React Compiler enabled via `babel-plugin-react-compiler` + `eslint-plugin-react-compiler`                                |
 
 Pin exact versions in lab project `package.json`s (no `^` or `~`) so
 every cohort gets the same install. Bumps happen deliberately, not on
@@ -75,7 +74,7 @@ clean restart point.
   store. Action names describe transitions (`addDraft`, `removeDraft`),
   not setters.
 - **Auth is HttpOnly-cookie first.** New code uses `credentials:
-  'include'` and forwards the inbound `Cookie` header server-side.
+'include'` and forwards the inbound `Cookie` header server-side.
   Bearer tokens are an alias for legacy clients (chat).
 - **Server Components are the default in Next.js.** Mark `'use client'`
   only when a file genuinely needs `useState`, an event handler, a DOM

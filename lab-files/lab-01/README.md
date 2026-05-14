@@ -5,13 +5,13 @@ What's in here:
 ```
 lab-01/
 ├── real-time-chat/      ← chat client (CRA, React 18, class components) + chat server (socket.io)
-└── social-media/server/ ← auth backend (used for login/signup; lives on port 5000)
+└── social-media/server/ ← auth backend (used for login/signup; lives on port 4000)
 ```
 
 ## How to run (three terminals)
 
 ```bash
-# Terminal 1 — auth backend (port 5000)
+# Terminal 1 — auth backend (port 4000)
 cd social-media/server
 npm install
 npm run dev

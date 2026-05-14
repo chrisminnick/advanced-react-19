@@ -1,7 +1,7 @@
 # REST Client requests for the user/auth endpoints.
 # Open in VS Code with the "REST Client" extension and click "Send Request".
 
-@host = http://localhost:5000
+@host = http://localhost:4000
 
 ###  Health check
 GET {{host}}/api/setup-check

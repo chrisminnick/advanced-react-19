@@ -7,7 +7,7 @@
 //   - Keeping this in a `.server.js` file tells RR v7's bundler not to ship
 //     it (or its imports) to the browser.
 
-const BACKEND = process.env.BACKEND_URL ?? 'http://localhost:5000';
+const BACKEND = process.env.BACKEND_URL ?? 'http://localhost:4000';
 
 async function request(path, init = {}) {
   const res = await fetch(`${BACKEND}${path}`, {

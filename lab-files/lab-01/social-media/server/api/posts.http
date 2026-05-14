@@ -2,7 +2,7 @@
 # Either log in first (above in user.http) so the cookie is set,
 # OR set @token below to a JWT and the requests will use the Bearer header.
 
-@host = http://localhost:5000
+@host = http://localhost:4000
 @token = paste-a-jwt-here
 @postId = paste-a-post-id-here
 

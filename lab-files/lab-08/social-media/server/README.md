@@ -23,12 +23,12 @@ cp .env.example .env   # if present — otherwise the defaults below kick in
 npm run dev            # node --watch — restarts on file change
 ```
 
-The server boots on **port 5000** (override with `PORT` or `SERVER_PORT`).
+The server boots on **port 4000** (override with `PORT` or `SERVER_PORT`).
 
 Confirm it's running:
 
 ```bash
-curl http://localhost:5000/api/setup-check
+curl http://localhost:4000/api/setup-check
 # { "ok": true, "message": "social-media backend ready", "version": "2.0.0", "mongo": "connected" }
 ```
 
@@ -38,7 +38,7 @@ All settings have working defaults so the server boots out of the box:
 
 | Variable               | Default                                          | Notes                                           |
 | ---------------------- | ------------------------------------------------ | ----------------------------------------------- |
-| `PORT`                 | `5000`                                           | `SERVER_PORT` is also accepted as a fallback.   |
+| `PORT`                 | `4000`                                           | `SERVER_PORT` is also accepted as a fallback.   |
 | `MONGO_URL`            | `mongodb://localhost:27017/social-network`       | Full connection string.                         |
 | `ACCESS_TOKEN_SECRET`  | `dev-only-not-for-production`                    | **Set this** before deploying anywhere real.    |
 | `ALLOWED_ORIGINS`      | `""`                                             | Comma-separated. Dev origins below are always allowed. |

@@ -8,7 +8,7 @@ This is the **Lab 2 port target** — the Next.js 15 / App Router counterpart to
 - **`app/page.jsx`** — placeholder home page pointing students at the labs
 - **`app/globals.css`** — minimal styling, matched to the RR v7 client
 - **`app/lib/api.js`** — fetch wrapper for the social-media backend. Same endpoint helpers as the RR v7 client (`login`, `signup`, `logout`, `getMe`, `listPosts`, `getPost`, `createPost`)
-- **`next.config.mjs`** — rewrites `/api/*` to `http://localhost:5000/api/*` so client and Server Components can both call `/api/...`
+- **`next.config.mjs`** — rewrites `/api/*` to `http://localhost:4000/api/*` so client and Server Components can both call `/api/...`
 
 ## What's intentionally missing
 
@@ -53,7 +53,7 @@ If you have both the RR v7 client (on :5173) and this client (on :3000) running 
 - **JavaScript, not TypeScript** — per the course's locked decision
 - **The React Compiler is enabled** in `next.config.mjs`. Comment out if your team isn't using it yet
 - **Path alias** `@/` resolves to the project root
-- **Rewrites** route `/api/*` → `http://localhost:5000/api/*` so all fetches are same-origin in dev
+- **Rewrites** route `/api/*` → `http://localhost:4000/api/*` so all fetches are same-origin in dev
 
 ## Where this starter lives
 

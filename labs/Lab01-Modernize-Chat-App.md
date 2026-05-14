@@ -55,7 +55,7 @@ Read `lab-files/lab-01/README.md` — it has the three-terminal startup
 sequence. The short version:
 
 ```bash
-# Terminal 1 — auth backend (port 5000)
+# Terminal 1 — auth backend (port 4000)
 cd lab-files/lab-01/social-media/server
 npm install
 npm run dev

@@ -9,13 +9,16 @@ import mongoose from 'mongoose';
 import userRoutes from './routes/user.js';
 dotenv.config();
 const port = process.env.SERVER_PORT || 8081;
-// Connecting to the database
+
+// Connecting to the database. MONGO_URI defaults to a local install so
+// students don't have to create a .env file just to run the chat server.
+// useNewUrlParser was deprecated in Mongoose 6+ and removed in 8 — dropping
+// it silences the warning and works on either version.
+const mongoUri = process.env.MONGO_URI ?? 'mongodb://localhost:27017';
 mongoose
-  .connect(`${process.env.MONGO_URI}/real-time-chat`, {
-    useNewUrlParser: true,
-  })
+  .connect(`${mongoUri}/real-time-chat`)
   .then(() => {
-    console.log('Connected to database!');
+    console.log(`Connected to ${mongoUri}/real-time-chat`);
   })
   .catch((e) => {
     console.log(e);

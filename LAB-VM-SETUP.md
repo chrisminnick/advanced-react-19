@@ -339,12 +339,12 @@ Get-Service MongoDB
 cd $env:USERPROFILE\Desktop\advanced-react-19\lab-files\lab-02\social-media\server
 npm run dev
 # Expect:
-#   social-media server listening on http://localhost:5000
+#   social-media server listening on http://localhost:4000
 #   Connected to mongodb://localhost:27017/social-network
 # Ctrl+C to stop.
 
 # Health endpoint reachable
-curl http://localhost:5000/api/setup-check
+curl http://localhost:4000/api/setup-check
 # {"ok":true,"message":"social-media backend ready",...}
 ```
 
@@ -443,7 +443,7 @@ between cohorts.
 - [ ] AI assistant pre-installed (Claude Code / Cursor / Copilot)
 - [ ] Repo cloned and `npm install`ed for every project
 - [ ] `npm run check` in `setup-check/` is all green
-- [ ] `curl http://localhost:5000/api/setup-check` returns `ok:true`
+- [ ] `curl http://localhost:4000/api/setup-check` returns `ok:true`
 - [ ] Cohort reset script ready in `C:\TrainingOps\`
 
 If every box is checked, the VM is ready to hand to a student.

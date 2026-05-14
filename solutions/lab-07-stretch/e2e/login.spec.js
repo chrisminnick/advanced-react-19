@@ -7,7 +7,7 @@ const TEST_PASSWORD = 'lab07-pass';
 // returns 409 from the backend — that's fine, it means the previous run
 // left them around.
 test.beforeAll(async () => {
-  const ctx = await apiRequest.newContext({ baseURL: 'http://localhost:5000' });
+  const ctx = await apiRequest.newContext({ baseURL: 'http://localhost:4000' });
   const res = await ctx.post('/api/signup', {
     data: { email: TEST_EMAIL, password: TEST_PASSWORD, displayName: 'E2E User' },
   });

@@ -1,7 +1,7 @@
 // Single source of network calls. Lab 4 students extend this; Lab 7 mocks it via MSW handlers.
 //
 // In dev, fetches go to /api/* which the Vite proxy routes to the social-media backend
-// at localhost:5000. In production, configure the proxy in your hosting layer.
+// at localhost:4000. In production, configure the proxy in your hosting layer.
 //
 // All requests include `credentials: 'include'` so the session cookie is sent automatically.
 // Don't store auth tokens in localStorage — see Module 10 for the reasoning.

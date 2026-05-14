@@ -28,7 +28,7 @@ export default defineConfig({
   ],
   server: {
     port: 5173,
-    proxy: { '/api': 'http://localhost:5000' },
+    proxy: { '/api': 'http://localhost:4000' },
   },
 });
 
@@ -42,5 +42,5 @@ export default defineConfig({
 //     }),
 //     reactRouter(),
 //   ],
-//   server: { port: 5173, proxy: { '/api': 'http://localhost:5000' } },
+//   server: { port: 5173, proxy: { '/api': 'http://localhost:4000' } },
 // });

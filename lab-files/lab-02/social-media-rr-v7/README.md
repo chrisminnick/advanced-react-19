@@ -49,7 +49,7 @@ Visit `http://localhost:5173`. You'll see the placeholder home page with links t
 - **React 19 + React Router v7 framework mode**
 - **JavaScript, not TypeScript** — per the course's locked decision
 - **Path alias** `~/*` resolves to `./app/*` (RR v7 default)
-- **Vite proxy** routes `/api/*` → `http://localhost:5000/*` so client fetches are same-origin
+- **Vite proxy** routes `/api/*` → `http://localhost:4000/*` so client fetches are same-origin
 
 ## Where this starter lives
 

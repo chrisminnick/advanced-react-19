@@ -18,7 +18,7 @@
 import 'server-only';
 import { cookies } from 'next/headers';
 
-const BACKEND = process.env.BACKEND_URL ?? 'http://localhost:5000';
+const BACKEND = process.env.BACKEND_URL ?? 'http://localhost:4000';
 
 async function request(path, init = {}) {
   // Forward the inbound `session` cookie so the backend sees the user.

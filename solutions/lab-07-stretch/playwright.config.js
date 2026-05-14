@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 // Headless Chromium against the local dev stack. Spins up the Vite dev
-// server (which proxies /api to localhost:5000 — make sure
+// server (which proxies /api to localhost:4000 — make sure
 // social-media/server is running before you start) and reuses an
 // already-running one if you're iterating.
 export default defineConfig({

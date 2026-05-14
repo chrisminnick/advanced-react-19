@@ -55,7 +55,7 @@ npm install
 npm run dev
 ```
 
-The server listens on `http://localhost:5000`. It exposes `/api/login`,
+The server listens on `http://localhost:4000`. It exposes `/api/login`,
 `/api/signup`, `/api/me`, `/api/posts`, and a few others. CORS is
 configured to accept both Vite (5173) and Next.js (3000) origins.
 
@@ -88,7 +88,7 @@ during Part B.
 In a fourth terminal (or your favorite HTTP client):
 
 ```bash
-curl http://localhost:5000/api/setup-check
+curl http://localhost:4000/api/setup-check
 # should return {"ok": true, "message": "social-media backend ready", ...}
 ```
 

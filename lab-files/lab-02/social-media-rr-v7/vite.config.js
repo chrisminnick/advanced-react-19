@@ -6,9 +6,9 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      // The backend at localhost:5000 is the shared social-media/server.
+      // The backend at localhost:4000 is the shared social-media/server.
       // Proxying keeps fetches same-origin during dev so no CORS dance.
-      '/api': 'http://localhost:5000',
+      '/api': 'http://localhost:4000',
     },
   },
 });
