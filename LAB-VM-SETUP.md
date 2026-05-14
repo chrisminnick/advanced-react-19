@@ -251,35 +251,55 @@ cd $env:USERPROFILE\Desktop
 git clone https://github.com/chrisminnick/advanced-react-19.git
 cd advanced-react-19
 
-# Warm the npm cache for every project the labs touch
-foreach ($d in @(
-  'social-media\server',
-  'social-media-rr-v7',
-  'social-media-nextjs',
-  'real-time-chat\server',
-  'real-time-chat\client',
-  'server-components-dashboard',
-  'setup-check'
-)) {
-  Write-Host "Installing $d…"
+# Warm the npm cache for every project a student will touch.
+# (Each lab folder is self-contained — same project may appear in multiple
+# lab folders. That's intentional; per-lab snapshots avoid branch-merge
+# debugging during class.)
+
+$paths = @(
+  'setup-check',
+  'lab-files\lab-01\real-time-chat\server',
+  'lab-files\lab-01\real-time-chat\client',
+  'lab-files\lab-01\social-media\server',
+  'lab-files\lab-02\social-media\server',
+  'lab-files\lab-02\social-media-rr-v7',
+  'lab-files\lab-02\social-media-nextjs',
+  'lab-files\lab-03\social-media\server',
+  'lab-files\lab-03\social-media-rr-v7',
+  'lab-files\lab-04\social-media\server',
+  'lab-files\lab-04\social-media-rr-v7',
+  'lab-files\lab-05\server-components-dashboard',
+  'lab-files\lab-06\social-media\server',
+  'lab-files\lab-06\social-media-rr-v7',
+  'lab-files\lab-07\social-media\server',
+  'lab-files\lab-07\social-media-rr-v7',
+  'lab-files\lab-08\social-media\server',
+  'lab-files\lab-08\social-media-rr-v7',
+  'demos\routing-demo',
+  'demos\my-next-app',
+  'demos\my-next-routing-demo'
+)
+
+foreach ($d in $paths) {
+  Write-Host "Installing $d ..."
   Push-Location $d
   npm install --no-audit --no-fund
   Pop-Location
 }
 ```
 
-Confirm the chat app's class-component starter compiles (it's the
-biggest install):
+This step takes 10–20 minutes the first time and produces a lot of
+disk usage (gigabytes). That's the cost of per-lab self-containment.
+
+Confirm the chat app's legacy starter compiles (it's the biggest
+install — failure here usually means Long Path Support wasn't enabled
+in §2):
 
 ```powershell
-cd real-time-chat\client
+cd lab-files\lab-01\real-time-chat\client
 npm run build
-cd ..\..
+cd ..\..\..\..\
 ```
-
-A failure here usually means Long Path Support wasn't enabled in §2.5
-or one of the native build tools didn't land. Re-run the Node.js
-installer with the "automatically install necessary tools" box checked.
 
 ---
 
@@ -315,8 +335,8 @@ Additional manual checks the script doesn't cover:
 Get-Service MongoDB
 # Status should be Running
 
-# Backend boots
-cd $env:USERPROFILE\Desktop\advanced-react-19\social-media\server
+# Backend boots (any lab's copy works — lab-02 is a fine smoke test)
+cd $env:USERPROFILE\Desktop\advanced-react-19\lab-files\lab-02\social-media\server
 npm run dev
 # Expect:
 #   social-media server listening on http://localhost:5000

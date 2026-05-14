@@ -1,0 +1,17 @@
+# Node
+node_modules/
+
+# React Router build output
+.react-router/
+build/
+
+# Env
+.env*.local
+
+# OS
+.DS_Store
+._*
+
+# Editor
+*.swp
+*.swo

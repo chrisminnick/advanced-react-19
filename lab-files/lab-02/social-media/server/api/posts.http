@@ -1,0 +1,44 @@
+# REST Client requests for the posts endpoints.
+# Either log in first (above in user.http) so the cookie is set,
+# OR set @token below to a JWT and the requests will use the Bearer header.
+
+@host = http://localhost:5000
+@token = paste-a-jwt-here
+@postId = paste-a-post-id-here
+
+###  Create a post (cookie auth — run /api/login first)
+POST {{host}}/api/posts
+content-type: application/json
+
+{
+  "title": "Hello world",
+  "body": "First post in the upgraded backend"
+}
+
+###  Create a post (Bearer auth — uses @token)
+POST {{host}}/api/posts
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "From the legacy chat client",
+  "body": "Bearer-token style"
+}
+
+###  List all posts (cookie auth)
+GET {{host}}/api/posts
+
+###  Get a single post
+GET {{host}}/api/posts/{{postId}}
+
+###  Update a post
+PUT {{host}}/api/posts/{{postId}}
+content-type: application/json
+
+{
+  "title": "Updated title",
+  "body": "Updated body"
+}
+
+###  Delete a post
+DELETE {{host}}/api/posts/{{postId}}

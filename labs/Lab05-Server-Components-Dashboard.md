@@ -4,7 +4,10 @@
 
 **Format:** Hands-on. Work alone.
 
-**Goal:** Build a small project-tracker dashboard using Server Components for data and a Server Action for the create-task form. Document each client/server boundary decision and explain why each `'use client'` was necessary.
+**Goal:** Build a small project-tracker dashboard using Server
+Components for data and a Server Action for the create-task form.
+Document each client/server boundary decision and explain why each
+`'use client'` was necessary.
 
 ---
 
@@ -17,11 +20,12 @@
    - An "Add task" form — Server Action with `useActionState` for validation
    - A filter widget that toggles which task statuses appear in the feed — the only Client Component
 
-2. A `BOUNDARY-NOTES.md` at the dashboard project root explaining each `'use client'` you used and why each one was necessary.
+2. A `BOUNDARY-NOTES.md` at the root of `lab-files/lab-05/` explaining
+   each `'use client'` you used and why each one was necessary.
 
-3. A branch pushed: `lab05/<your-name>-dashboard`.
-
-Plus, if you have time: streaming with multiple Suspense boundaries so the stats cards appear instantly and the slower components (activity, team) stream in.
+Plus, if you have time: streaming with multiple Suspense boundaries so
+the stats cards appear instantly and the slower components (activity,
+team) stream in.
 
 ---
 
@@ -32,9 +36,8 @@ Plus, if you have time: streaming with multiple Suspense boundaries so the stats
 | Setup + read the starter | 10 |
 | Part A — Add stats cards | 15 |
 | Part B — Add activity feed + team list | 15 |
-| Part C — Add task with Server Action | 20 |
+| Part C — Add task with Server Action | 25 |
 | Part D — Filter widget (the Client Component) | 10 |
-| Part E — Document boundary decisions | 5 |
 | Stretch (if time): streaming with Suspense | + |
 
 If you finish early, do the stretch task.
@@ -43,33 +46,44 @@ If you finish early, do the stretch task.
 
 ## Setup
 
-You're working in `server-components-dashboard/` — a Next.js 15 starter that ships with mock data and a minimal scaffolding. Spend ten minutes reading the starter before writing any code.
+You're working in `lab-files/lab-05/`. The starter is a Next.js 15
+project that ships with mock data and minimal scaffolding. Spend ten
+minutes reading the starter before writing any code.
 
 ```bash
-cd server-components-dashboard
+cd lab-files/lab-05/server-components-dashboard
 npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`. You'll see a placeholder dashboard with one stub card.
+Open `http://localhost:3000`. You'll see a placeholder dashboard with
+one stub card.
 
 ### Read these files
 
-- `app/dashboard/page.jsx` — the dashboard page (currently a stub Server Component)
+- `app/dashboard/page.jsx` — the dashboard page (currently a stub
+  Server Component)
 - `app/dashboard/layout.jsx` — shared chrome
-- `lib/data.js` — mock data layer with `getTaskCounts()`, `getRecentActivity()`, `getTeamMembers()`, `getTasks()`, `createTask()`. Each function is async and has a deliberate `await sleep(...)` to make the streaming demo meaningful.
-- `app/dashboard/StubCard.jsx` — example of a server-side card you can copy from
+- `lib/data.js` — mock data layer with `getTaskCounts()`,
+  `getRecentActivity()`, `getTeamMembers()`, `getTasks()`,
+  `createTask()`. Each function is async and has a deliberate
+  `await sleep(...)` to make the streaming demo meaningful.
+- `app/dashboard/StubCard.jsx` — example of a server-side card you can
+  copy from
 - `app/dashboard/FilterToggle.jsx` — empty Client Component placeholder
 
-### Branch off
+### Make a backup
 
 ```bash
-git checkout -b lab05/<your-name>-dashboard
+cp -R lab-files/lab-05 lab-files/lab-05-backup
+
+# Windows PowerShell:
+Copy-Item -Recurse lab-files/lab-05 lab-files/lab-05-backup
 ```
 
 ### Boundary diary
 
-Open `BOUNDARY-NOTES.md` at the project root and create it if it doesn't exist:
+Create `lab-files/lab-05/BOUNDARY-NOTES.md`:
 
 ```markdown
 # Boundary decisions
@@ -83,7 +97,8 @@ You'll be appending to this file as you go.
 
 ## Part A — Add stats cards (15 min)
 
-Build three Server Components that show task counts: `OpenTasksCard`, `InProgressCard`, `DoneCard`.
+Build three Server Components that show task counts: `OpenTasksCard`,
+`InProgressCard`, `DoneCard`.
 
 ### Step 1 — Make a `StatCard` Server Component
 
@@ -126,7 +141,10 @@ export default async function Dashboard() {
 
 ### Step 3 — Verify
 
-Run the app. You should see three cards with real numbers. Open DevTools → Network tab → the page request. Look at the response: there's no JS for the card components. The numbers are baked into the HTML.
+Run the app. You should see three cards with real numbers. Open
+DevTools → Network tab → the page request. Look at the response:
+there's no JS for the card components. The numbers are baked into the
+HTML.
 
 This is the headline win of Server Components — the cards ship as zero JS.
 
@@ -174,7 +192,6 @@ export default async function TeamList() {
       <ul>
         {members.map((m) => (
           <li key={m.id}>
-            <img src={m.avatar} alt="" />
             <span>{m.name}</span>
             <span className="role">{m.role}</span>
           </li>
@@ -207,20 +224,18 @@ export default async function Dashboard() {
 
 ### Step 4 — Verify
 
-The page now waits for the slowest of `getTaskCounts`, `getRecentActivity`, and `getTeamMembers` before rendering anything. You can see the wait in the dev server logs (each function logs its sleep). Don't fix that yet — the streaming stretch is what fixes it.
-
-Commit:
-
-```bash
-git add -A
-git commit -m "Lab 5 Parts A & B: stats cards, activity feed, team list"
-```
+The page now waits for the slowest of `getTaskCounts`,
+`getRecentActivity`, and `getTeamMembers` before rendering anything.
+You can see the wait in the dev server logs (each function logs its
+sleep). Don't fix that yet — the streaming stretch is what fixes it.
 
 ---
 
-## Part C — Add task with Server Action (20 min)
+## Part C — Add task with Server Action (25 min)
 
-This is the heart of the lab. You'll add a form that creates a task via a Server Action, with `useActionState` handling validation and the pending state.
+This is the heart of the lab. You'll add a form that creates a task
+via a Server Action, with `useActionState` handling validation and the
+pending state.
 
 ### Step 1 — Create the action
 
@@ -252,7 +267,8 @@ export async function addTaskAction(prevState, formData) {
 }
 ```
 
-The `revalidatePath` call invalidates the dashboard's cached data so the new task shows up.
+The `revalidatePath` call invalidates the dashboard's cached data so
+the new task shows up.
 
 ### Step 2 — Build the form (Client Component)
 
@@ -329,20 +345,17 @@ Try the full flow:
 2. Submit with a 200-character title → length error
 3. Submit valid title → success message, stats card updates after `revalidatePath`
 
-Try without JavaScript: open DevTools → Settings → Disable JavaScript, then submit the form. It should still work because Server Actions support progressive enhancement. Re-enable JS afterward.
-
-Commit:
-
-```bash
-git add -A
-git commit -m "Lab 5 Part C: add-task Server Action with useActionState"
-```
+Try without JavaScript: open DevTools → Settings → Disable JavaScript,
+then submit the form. It should still work because Server Actions
+support progressive enhancement. Re-enable JS afterward.
 
 ---
 
-## Part D — Filter widget (10 min)
+## Part D — Filter widget + Boundary documentation (10 min)
 
-The activity feed could use a "show only completed" toggle. This is the only piece of UI in the dashboard that genuinely needs to be a Client Component — it has interactive client state.
+The activity feed could use a "show only completed" toggle. This is the
+only piece of UI in the dashboard that genuinely needs to be a Client
+Component — it has interactive client state.
 
 ### Step 1 — Build the toggle
 
@@ -366,8 +379,6 @@ export default function FilterToggle({ children }) {
         />
         Show completed only
       </label>
-      {/* In a real version you'd push completedOnly to the URL or a context.
-          For this lab, just render children — the toggle is a UI demo. */}
       {children}
     </div>
   );
@@ -376,7 +387,10 @@ export default function FilterToggle({ children }) {
 
 ### Step 2 — Use it correctly
 
-The trick: `FilterToggle` is a Client Component, but its `children` can still be the Server Component `<ActivityFeed />`. That's the composition pattern from Module 6's "pass Client Components as children" slide.
+The trick: `FilterToggle` is a Client Component, but its `children` can
+still be the Server Component `<ActivityFeed />`. That's the
+composition pattern from Module 6's "pass Client Components as
+children" slide.
 
 ```jsx
 import FilterToggle from './FilterToggle';
@@ -388,54 +402,49 @@ import ActivityFeed from './ActivityFeed';
 </FilterToggle>
 ```
 
-(In a real app you'd plumb the filter value down through context or URL params. For this lab, just confirm the toggle's `useState` works and the `ActivityFeed` still server-renders. Filtering by URL params is a stretch.)
+### Step 3 — Document boundary decisions
 
-### Step 3 — Verify
-
-Click the checkbox. The state should update locally. The activity feed itself remains a Server Component — it doesn't re-fetch on the client.
-
----
-
-## Part E — Document boundary decisions (5 min)
-
-Open `BOUNDARY-NOTES.md` and write a short paragraph for each component that uses `'use client'`. Cite the exact reason. Examples of what the agent / instructor will be looking for:
+Open `lab-files/lab-05/BOUNDARY-NOTES.md` and write a short paragraph
+for each component that uses `'use client'`. Cite the exact reason.
+Examples:
 
 ```markdown
 # Boundary decisions
 
 ## AddTaskForm.jsx — `'use client'`
 
-Needed because: uses `useActionState`. Must be a Client Component to wire the form's pending state and the validation feedback to the rendered DOM.
+Needed because: uses `useActionState`. Must be a Client Component to
+wire the form's pending state and the validation feedback to the
+rendered DOM.
 
 ## SubmitButton.jsx — `'use client'`
 
-Needed because: uses `useFormStatus`, which only works inside a Client Component descendant of a `<form>`. Extracted into its own component so the rest of the form's structure could stay declarative.
+Needed because: uses `useFormStatus`, which only works inside a Client
+Component descendant of a `<form>`. Extracted into its own component
+so the rest of the form's structure could stay declarative.
 
 ## FilterToggle.jsx — `'use client'`
 
-Needed because: uses `useState` for the checkbox's local UI state. The children prop receives a Server Component (`<ActivityFeed />`) — that part stays server-rendered.
+Needed because: uses `useState` for the checkbox's local UI state. The
+children prop receives a Server Component (`<ActivityFeed />`) — that
+part stays server-rendered.
 
 ## Components I deliberately did NOT mark `'use client'`
 
-- `StatCard`, `ActivityFeed`, `TeamList`, the dashboard page itself: pure server-rendered, no state, no event handlers, can read the DB directly.
-- The `addTaskAction` itself uses the `'use server'` directive, not `'use client'` — it runs server-side when called from the form.
+- `StatCard`, `ActivityFeed`, `TeamList`, the dashboard page itself:
+  pure server-rendered, no state, no event handlers, can read the data
+  layer directly.
+- The `addTaskAction` itself uses the `'use server'` directive, not
+  `'use client'` — it runs server-side when called from the form.
 ```
-
-Commit and push:
-
-```bash
-git add -A
-git commit -m "Lab 5 Parts D & E: filter widget, boundary documentation"
-git push origin lab05/<your-name>-dashboard
-```
-
-Submit your branch link and `BOUNDARY-NOTES.md` in the shared class doc.
 
 ---
 
 ## Stretch — streaming with multiple Suspense boundaries
 
-Right now the page waits for ALL data before rendering anything. With multiple Suspense boundaries, the shell ships immediately, and each section streams in independently.
+Right now the page waits for ALL data before rendering anything. With
+multiple Suspense boundaries, the shell ships immediately, and each
+section streams in independently.
 
 ### Step 1 — Wrap each slow section in Suspense
 
@@ -471,11 +480,14 @@ export default function Dashboard() {
 
 ### Step 2 — Extract the awaiting work into child Server Components
 
-Now `Dashboard` itself doesn't `await` anything. The `await` lives in `<StatsRow />`, `<ActivityFeed />`, etc. Each one suspends inside its own boundary.
+Now `Dashboard` itself doesn't `await` anything. The `await` lives in
+`<StatsRow />`, `<ActivityFeed />`, etc. Each one suspends inside its
+own boundary.
 
 ### Step 3 — Build the skeleton components
 
-Three small Server Components that render the same shape as their real counterparts but with placeholder text. Bootstrap's `placeholder` class works.
+Three small Server Components that render the same shape as their real
+counterparts but with placeholder text. CSS `placeholder` shimmer works.
 
 ### Step 4 — Verify
 
@@ -485,21 +497,37 @@ Open the page. You should see:
 2. The stats row fills in first (fastest query)
 3. The activity feed and team list each fill in as their queries resolve
 
-The Network tab shows the response streaming in chunks. If you watch the dev server logs, the three queries fire concurrently rather than serially.
+The Network tab shows the response streaming in chunks. If you watch
+the dev server logs, the three queries fire concurrently rather than
+serially.
 
 ---
 
 ## Hints if you get stuck
 
-- **"Cannot use useState in a Server Component" error:** A component you wrote uses `useState` but doesn't have `'use client'` at the top. Add it, or refactor so the state lives in a Client Component child.
-- **"Cannot pass a function as a prop from Server to Client" error:** You passed an inline event handler from a Server Component to a Client Component. Either move the handler into the Client Component or convert the function to a Server Action with `'use server'`.
-- **Form submits but the dashboard doesn't update:** missing `revalidatePath` (or you're on RR v7, in which case the equivalent is the route's loader rerunning automatically after the action).
-- **`useFormStatus` returns `null`:** the component using it is rendered outside a `<form>`. It must be a descendant of a form element, not the form itself.
-- **Suspense fallback never disappears:** something in the suspending child is creating a new promise on every render. Move the data fetch into a Server Component that awaits it directly.
-- **"Module not found: 'fs'" or 'crypto':** a server-only module was imported into a Client Component. Add a `'server-only'` import to the offending file to get a clearer error.
+- **"Cannot use useState in a Server Component" error:** A component
+  you wrote uses `useState` but doesn't have `'use client'` at the top.
+  Add it, or refactor so the state lives in a Client Component child.
+- **"Cannot pass a function as a prop from Server to Client" error:**
+  You passed an inline event handler from a Server Component to a
+  Client Component. Either move the handler into the Client Component
+  or convert the function to a Server Action with `'use server'`.
+- **Form submits but the dashboard doesn't update:** missing
+  `revalidatePath` (or you're on RR v7, in which case the equivalent
+  is the route's loader rerunning automatically after the action).
+- **`useFormStatus` returns `null`:** the component using it is
+  rendered outside a `<form>`. It must be a descendant of a form
+  element, not the form itself.
+- **Suspense fallback never disappears:** something in the suspending
+  child is creating a new promise on every render. Move the data
+  fetch into a Server Component that awaits it directly.
+- **"Module not found: 'fs'" or 'crypto':** a server-only module was
+  imported into a Client Component. Add a `'server-only'` import to
+  the offending file to get a clearer error.
 
 ---
 
-## Solution branch
+## Reference solutions
 
-The reference solution is at `solution/lab-05-dashboard`. The stretch solution with streaming is at `solution/lab-05-streaming`. Don't peek before you've finished your own.
+- `solutions/lab-05-dashboard/` — main solution
+- `solutions/lab-05-streaming/` — streaming stretch
