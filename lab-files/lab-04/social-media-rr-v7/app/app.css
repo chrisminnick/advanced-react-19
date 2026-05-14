@@ -26,10 +26,12 @@ body {
   color: var(--text);
   font-family: 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
   line-height: 1.45;
-  background:
-    radial-gradient(circle at 0% -10%, var(--bg-accent) 0, transparent 40%),
-    radial-gradient(circle at 100% 0%, #f8d7b4 0, transparent 28%),
-    var(--bg);
+  background: radial-gradient(
+      circle at 0% -10%,
+      var(--bg-accent) 0,
+      transparent 40%
+    ),
+    radial-gradient(circle at 100% 0%, #f8d7b4 0, transparent 28%), var(--bg);
 }
 
 a {
@@ -384,13 +386,23 @@ ul.lab-list {
 }
 
 @keyframes skeleton-shimmer {
-  0% { background-position: 100% 50%; }
-  100% { background-position: 0 50%; }
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (min-width: 900px) {

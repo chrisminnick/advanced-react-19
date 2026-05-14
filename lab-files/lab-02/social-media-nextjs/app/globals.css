@@ -28,8 +28,7 @@ body {
   line-height: 1.45;
   background:
     radial-gradient(circle at 0% -10%, var(--bg-accent) 0, transparent 40%),
-    radial-gradient(circle at 100% 0%, #f8d7b4 0, transparent 28%),
-    var(--bg);
+    radial-gradient(circle at 100% 0%, #f8d7b4 0, transparent 28%), var(--bg);
 }
 
 main {
@@ -89,7 +88,10 @@ button {
   color: #fff;
   padding: 0.52rem 0.9rem;
   cursor: pointer;
-  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    opacity 120ms ease;
 }
 
 button:hover {

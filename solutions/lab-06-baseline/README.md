@@ -27,8 +27,8 @@ app/components/TrendingSidebar.jsx  ← expensive recomputation each render
 app/components/Composer.jsx         ← pretends to be a heavy markdown editor
 ```
 
-To publish to a `lab-06-baseline` reference branch, see `MATERIALIZE.md`.
-The three `solution/lab-06-*` branches each branch off `lab-06-baseline`.
+The three `solution/lab-06-*` snapshots conceptually branch from this
+`lab-06-baseline` state.
 
 ## Note on the "heavy" Composer
 
@@ -39,7 +39,9 @@ is meaningfully larger than the rest of the home page. The optimization
 pattern (lazy + Suspense) works identically.
 
 If your cohort wants the real markdown editor, swap in:
+
 ```bash
 ( cd social-media-rr-v7 && npm install @uiw/react-md-editor )
 ```
+
 and replace the import in `Composer.jsx` accordingly.

@@ -14,5 +14,3 @@ The simplification compared to the exemplar in
 this solution **forwards the backend's `Set-Cookie` header** directly to
 the browser. One cookie, one source of truth. Loaders forward the request's
 `Cookie` header back to the backend when fetching protected data.
-
-To publish to the actual solution branch, see `MATERIALIZE.md`.

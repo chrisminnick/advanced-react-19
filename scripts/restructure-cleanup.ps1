@@ -1,8 +1,7 @@
 # PowerShell version of restructure-cleanup.sh, for the Windows VMs.
 #
-# Same contract: removes old top-level project folders, the obsolete
-# solutions/MATERIALIZE.md files, the v1 solutions, and orphan overlay
-# files in lab-files/.
+# Same contract: removes old top-level project folders, the v1 solutions,
+# and orphan overlay files in lab-files/.
 
 $ErrorActionPreference = 'Stop'
 Set-Location (Join-Path $PSScriptRoot '..')
@@ -13,10 +12,6 @@ Remove-Item -Recurse -Force real-time-chat,social-media,social-media-rr-v7,`
                             routing-demo,my-next-app,my-next-routing-demo `
                             -ErrorAction SilentlyContinue
 # Note: setup-check stays at the repo root.
-
-Write-Host "==> Removing solutions/MATERIALIZE.md files (obsolete)"
-Get-ChildItem -Path solutions -Recurse -Filter MATERIALIZE.md -ErrorAction SilentlyContinue |
-  Remove-Item -Force -ErrorAction SilentlyContinue
 
 Write-Host "==> Removing v1 solutions"
 Remove-Item -Recurse -Force solutions/real-time-chat,solutions/social-media,`

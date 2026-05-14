@@ -3,7 +3,6 @@
 #
 # What this removes:
 #   - The old top-level project folders (now duplicated under lab-files/* and demos/*)
-#   - solutions/MATERIALIZE.md files (branch-creation scripts, no longer applicable)
 #   - solutions/{real-time-chat,social-media,social-media-redux} (v1 solutions, slated for retirement)
 #   - "Orphan" files that linear file overlay couldn't avoid creating in the lab-files/ snapshots
 #
@@ -25,9 +24,6 @@ rm -rf my-next-app
 rm -rf my-next-routing-demo
 # Note: setup-check stays at the repo root (not lab-specific; everyone runs it)
 
-echo "==> Removing solutions/MATERIALIZE.md files (branch-creation scripts, obsolete)"
-find solutions -name MATERIALIZE.md -delete
-
 echo "==> Removing v1 solutions (real-time-chat, social-media, social-media-redux)"
 rm -rf solutions/real-time-chat
 rm -rf solutions/social-media
@@ -47,6 +43,6 @@ echo "    Verify with: git status"
 echo "    The repo should now have:"
 echo "      lab-files/lab-{01..08}/  — per-lab self-contained starters"
 echo "      demos/                    — Module 3 in-class demos"
-echo "      solutions/lab-N-*/        — solution snapshots (no MATERIALIZE.md)"
+echo "      solutions/lab-N-*/        — solution snapshots"
 echo "      setup-check/              — pre-Day-1 environment check"
 echo "      instructor/, labs/, student/  — courseware (decks, handouts, manual)"

@@ -4,9 +4,7 @@ This folder is the **modernized `real-time-chat/client/`** that powers the
 `solution/lab-01-modernize` branch.
 
 It is staged here on `main` so the source-of-truth files are easy to read,
-review, and update without needing to check out the solution branch. To
-**publish** it to the actual solution branch, see the script in
-`MATERIALIZE.md` next door.
+review, and update without needing to check out a separate solution branch.
 
 What's in here:
 

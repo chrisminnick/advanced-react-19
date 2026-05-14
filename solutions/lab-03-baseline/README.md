@@ -17,10 +17,6 @@ This file layout becomes the input for `solution/lab-03-zustand`,
 `solution/lab-03-jotai`, and `solution/lab-03-rtk` — each of which fixes
 the mess in its own way.
 
-To publish to a `lab-03-baseline` reference branch (optional — instructors
-typically just demo "look at this and feel bad" from the file diff), see
-`MATERIALIZE.md`.
-
 ## What's in here
 
 ```

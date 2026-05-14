@@ -29,32 +29,32 @@ Per-lab folders trade disk space for "no debugging anyone's git."
 
 ## Course materials
 
-| What | Where |
-|---|---|
-| Course outline (v2.0) | `instructor/Advanced-React-Course-Outline-v2.docx` |
-| Lab manual (consolidated 8 labs) | `instructor/advanced-react-labs-v2.docx` |
-| Combined slide deck | `instructor/advanced_react_v2.pptx` |
-| Per-module decks | `instructor/modules/Module01-* … Module10-*.pptx` |
-| Per-lab markdown + instructor notes + solution exemplars | `labs/Lab01-* … Lab08-*.md` |
-| Marketing course description | `Advanced-React-3-Day-CourseDescription-v2.docx` |
-| Optional pre-work doc | `Advanced-React-Pre-Work-v2.docx` |
-| Student setup guide (covers what's installed on the VM) | `instructor/Advanced-React-setup-v2.docx` |
-| Training-company VM provisioning guide | `LAB-VM-SETUP.md` |
-| Locked design decisions | `PROPOSAL-2026-Update.md`, `LAB-REPO-UPGRADE-PLAN.md`, `DRY-RUN-FINDINGS.md` |
-| AI-assistant conventions for the codebase | `AGENTS.md` |
+| What                                                     | Where                                                                        |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Course outline (v2.0)                                    | `instructor/Advanced-React-Course-Outline-v2.docx`                           |
+| Lab manual (consolidated 8 labs)                         | `instructor/advanced-react-labs-v2.docx`                                     |
+| Combined slide deck                                      | `instructor/advanced_react_v2.pptx`                                          |
+| Per-module decks                                         | `instructor/modules/Module01-* … Module10-*.pptx`                            |
+| Per-lab markdown + instructor notes + solution exemplars | `labs/Lab01-* … Lab08-*.md`                                                  |
+| Marketing course description                             | `Advanced-React-3-Day-CourseDescription-v2.docx`                             |
+| Optional pre-work doc                                    | `Advanced-React-Pre-Work-v2.docx`                                            |
+| Student setup guide (covers what's installed on the VM)  | `instructor/Advanced-React-setup-v2.docx`                                    |
+| Training-company VM provisioning guide                   | `LAB-VM-SETUP.md`                                                            |
+| Locked design decisions                                  | `PROPOSAL-2026-Update.md`, `LAB-REPO-UPGRADE-PLAN.md`, `DRY-RUN-FINDINGS.md` |
+| AI-assistant conventions for the codebase                | `AGENTS.md`                                                                  |
 
 ## Lab files
 
-| Lab | Folder | What's in it |
-|---|---|---|
-| 1 | `lab-files/lab-01/` | `real-time-chat/` (legacy CRA chat) + `social-media/server` (auth) |
-| 2 | `lab-files/lab-02/` | `social-media-rr-v7/` + `social-media-nextjs/` + `social-media/server` |
-| 3 | `lab-files/lab-03/` | `social-media-rr-v7/` (with bloated AppContext to refactor) + `social-media/server` |
-| 4 | `lab-files/lab-04/` | `social-media-rr-v7/` (Lab 3 Zustand state) + `social-media/server` |
-| 5 | `lab-files/lab-05/` | `server-components-dashboard/` (standalone) |
-| 6 | `lab-files/lab-06/` | `social-media-rr-v7/` (with seeded perf problems) + `social-media/server` (with tag stamping) |
-| 7 | `lab-files/lab-07/` | `social-media-rr-v7/` (Lab 4 TanStack Query) + `social-media/server` |
-| 8 | `lab-files/lab-08/` | `social-media-rr-v7/` (Lab 7 tests) + `social-media/server` |
+| Lab | Folder              | What's in it                                                                                  |
+| --- | ------------------- | --------------------------------------------------------------------------------------------- |
+| 1   | `lab-files/lab-01/` | `real-time-chat/` (legacy CRA chat) + `social-media/server` (auth)                            |
+| 2   | `lab-files/lab-02/` | `social-media-rr-v7/` + `social-media-nextjs/` + `social-media/server`                        |
+| 3   | `lab-files/lab-03/` | `social-media-rr-v7/` (with bloated AppContext to refactor) + `social-media/server`           |
+| 4   | `lab-files/lab-04/` | `social-media-rr-v7/` (Lab 3 Zustand state) + `social-media/server`                           |
+| 5   | `lab-files/lab-05/` | `server-components-dashboard/` (standalone)                                                   |
+| 6   | `lab-files/lab-06/` | `social-media-rr-v7/` (with seeded perf problems) + `social-media/server` (with tag stamping) |
+| 7   | `lab-files/lab-07/` | `social-media-rr-v7/` (Lab 4 TanStack Query) + `social-media/server`                          |
+| 8   | `lab-files/lab-08/` | `social-media-rr-v7/` (Lab 7 tests) + `social-media/server`                                   |
 
 Each lab folder is **self-contained** — its own copy of every project
 the lab needs, with whatever modifications the lab assumes (e.g., the
@@ -65,16 +65,16 @@ Benefit: no branch-and-merge debugging during class.
 
 Per-lab reference solutions live under `solutions/`:
 
-| Lab | Solution folder(s) |
-|---|---|
-| 1 | `solutions/lab-01-modernize/` |
-| 2 | `solutions/lab-02-rr-v7/`, `solutions/lab-02-nextjs/` |
-| 3 | `solutions/lab-03-zustand/`, `solutions/lab-03-jotai/`, `solutions/lab-03-rtk/`, `solutions/lab-03-baseline/` (the seeded "bad" starting state) |
-| 4 | `solutions/lab-04-tanstack-query/`, `solutions/lab-04-stretch/` (infinite scroll) |
-| 5 | `solutions/lab-05-dashboard/`, `solutions/lab-05-streaming/` |
-| 6 | `solutions/lab-06-perf/`, `solutions/lab-06-baseline/` |
-| 7 | `solutions/lab-07-tests/`, `solutions/lab-07-stretch/` (Playwright e2e) |
-| 8 | `solutions/lab-08-exemplar/` (Reactions feature, capstone reference) |
+| Lab | Solution folder(s)                                                                                                                              |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `solutions/lab-01-modernize/`                                                                                                                   |
+| 2   | `solutions/lab-02-rr-v7/`, `solutions/lab-02-nextjs/`                                                                                           |
+| 3   | `solutions/lab-03-zustand/`, `solutions/lab-03-jotai/`, `solutions/lab-03-rtk/`, `solutions/lab-03-baseline/` (the seeded "bad" starting state) |
+| 4   | `solutions/lab-04-tanstack-query/`, `solutions/lab-04-stretch/` (infinite scroll)                                                               |
+| 5   | `solutions/lab-05-dashboard/`, `solutions/lab-05-streaming/`                                                                                    |
+| 6   | `solutions/lab-06-perf/`, `solutions/lab-06-baseline/`                                                                                          |
+| 7   | `solutions/lab-07-tests/`, `solutions/lab-07-stretch/` (Playwright e2e)                                                                         |
+| 8   | `solutions/lab-08-exemplar/` (Reactions feature, capstone reference)                                                                            |
 
 Each solution folder has a `README.md` explaining what it changes from
 the matching lab's starter.
@@ -124,8 +124,8 @@ npm run check
 - Original top-level project folders moved into `lab-files/lab-NN/`
   and `demos/`. The old top-level copies are gone — see
   `scripts/restructure-cleanup.sh`.
-- Feature branches and `solutions/MATERIALIZE.md` scripts. Replaced
-  by per-lab folders.
+- Feature branches and branch-materialization scripts. Replaced by
+  per-lab folders.
 - `react_ssr_example/` — React 16 + Webpack SSR demo. Replaced by
   Server Components content in Module 6.
 - `server-components-demo/` — pre-release RSC channel + custom
@@ -139,9 +139,9 @@ git history.
 
 ## Revision history
 
-| Version | Date | Notes |
-|---|---|---|
-| v1.0 – v1.3.0 | 2023–2024 | Original three-day course. React 18, CRA, plain Redux, Single-SPA. |
-| v2.0 | May 2026 | Full overhaul. React 19, Server Components, the React Compiler, AI-assisted dev thread, Vitest/RTL/MSW testing module. Course rebalanced to 54% hands-on. Repo restructured to per-lab folders (no feature branches). |
+| Version       | Date      | Notes                                                                                                                                                                                                                 |
+| ------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1.0 – v1.3.0 | 2023–2024 | Original three-day course. React 18, CRA, plain Redux, Single-SPA.                                                                                                                                                    |
+| v2.0          | May 2026  | Full overhaul. React 19, Server Components, the React Compiler, AI-assisted dev thread, Vitest/RTL/MSW testing module. Course rebalanced to 54% hands-on. Repo restructured to per-lab folders (no feature branches). |
 
 See `PROPOSAL-2026-Update.md` for the full v1 → v2 design rationale.

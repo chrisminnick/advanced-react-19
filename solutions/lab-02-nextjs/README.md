@@ -8,5 +8,3 @@ project root, a `(auth)/` route group with `login` and `signup`, a `home/`
 page, a `logout/` route handler, a small `app/lib/session.js` helper, and a
 `app/lib/api.server.js` so Server Components and Server Actions can talk
 directly to the backend without going through Next's `/api/*` rewrites.
-
-To publish to the actual solution branch, see `MATERIALIZE.md`.

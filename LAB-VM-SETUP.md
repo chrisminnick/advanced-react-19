@@ -157,8 +157,8 @@ Recommended user settings (write to
 }
 ```
 
-The `Git Bash` default profile matters — the lab MATERIALIZE.md scripts
-are `bash` heredocs; PowerShell doesn't run them.
+The `Git Bash` default profile matters because many lab helper commands
+assume bash syntax; PowerShell does not run those snippets as-is.
 
 ### 3.4 Google Chrome
 
