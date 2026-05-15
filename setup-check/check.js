@@ -2,23 +2,30 @@
 // Pre-Day-1 environment check for the Advanced React course (v2.0).
 //
 // Verifies the things that, when broken, eat into Day 1 lecture time:
-//   1. Node >= 22
-//   2. npm  >= 10
+//   1. Node >= 22 (current LTS line)
+//   2. npm  >= 10 (ships with Node 22+)
 //   3. Git installed and reachable
 //   4. npm registry reachable
-//   5. React 19 published (i.e., your network reaches the registry AND can fetch real package metadata)
+//   5. React 19 published (network reaches the registry AND can fetch real metadata)
 //   6. Generic HTTPS works (catches corporate proxies)
+//   7. MongoDB reachable on localhost:27017 (Labs 1, 2, 3, 4, 6, 7, 8 need it)
+//   8. Repo structure intact (lab-files/, demos/, solutions/, all 8 lab folders)
 //
-// Usage: `node check.js` or `npm run check`
+// Usage: `node check.js` or `npm run check` from the setup-check/ folder
 // Exit code: 0 if all checks pass, 1 otherwise.
 
 const { execSync } = require('node:child_process');
+const fs = require('node:fs');
+const net = require('node:net');
+const path = require('node:path');
 const https = require('node:https');
 
 const PASS = '\x1b[32m✓\x1b[0m';
 const FAIL = '\x1b[31m✗\x1b[0m';
 const DIM = '\x1b[2m';
 const RESET = '\x1b[0m';
+
+const REPO_ROOT = path.resolve(__dirname, '..');
 
 const results = [];
 
@@ -39,7 +46,7 @@ function checkNode() {
       'Node version',
       false,
       `v${version} — need v22 or later`,
-      'Install Node 22 LTS via your package manager, nvm, or nodejs.org.'
+      'Install the current Node LTS (v24 as of May 2026) from nodejs.org or via nvm.'
     );
   }
 }
@@ -52,7 +59,7 @@ function checkNpm() {
     if (major >= 10) {
       record('npm version', true, out);
     } else {
-      record('npm version', false, `${out} — need v10 or later`, 'Upgrade Node 22 (npm 10 ships with it).');
+      record('npm version', false, `${out} — need v10 or later`, 'Upgrade to the current Node LTS (npm 10+ ships with it).');
     }
   } catch {
     record('npm version', false, 'not found', 'Make sure Node is installed and npm is on your PATH.');
@@ -148,6 +155,67 @@ async function checkGenericHttps() {
   }
 }
 
+// -- 7. MongoDB reachable on localhost:27017 --
+// Raw TCP probe so we don't need the mongodb driver as a dep. Just confirms
+// something is listening — the social-media/server's own connection check
+// will tell you whether it's a real Mongo behind the port.
+function checkMongo() {
+  return new Promise((resolve) => {
+    const sock = new net.Socket();
+    let settled = false;
+    const finish = (ok, detail, remedy) => {
+      if (settled) return;
+      settled = true;
+      sock.destroy();
+      record('MongoDB on :27017', ok, detail, remedy);
+      resolve();
+    };
+    sock.setTimeout(2000);
+    sock.once('connect', () => finish(true, 'reachable'));
+    sock.once('timeout', () => finish(false, 'connection timed out',
+      'Is mongod running? macOS: `brew services start mongodb-community`. Windows: `Start-Service MongoDB`. Linux: `sudo systemctl start mongod`.'));
+    sock.once('error', (err) => finish(false, err.code ?? err.message,
+      'Is mongod running? macOS: `brew services start mongodb-community`. Windows: `Start-Service MongoDB`. Linux: `sudo systemctl start mongod`.'));
+    sock.connect(27017, '127.0.0.1');
+  });
+}
+
+// -- 8. Repo structure --
+// The course assumes the lab-files/, demos/, and solutions/ trees are in
+// place — easy to spot a partial clone or wrong-branch checkout.
+function checkRepoStructure() {
+  const expected = {
+    'lab-files/':           ['lab-01', 'lab-02', 'lab-03', 'lab-04', 'lab-05', 'lab-06', 'lab-07', 'lab-08'],
+    'demos/':               ['routing-demo', 'my-next-app', 'my-next-routing-demo'],
+    'solutions/':           ['lab-01-modernize', 'lab-04-tanstack-query', 'lab-08-exemplar'],
+  };
+
+  const missing = [];
+  for (const [parent, children] of Object.entries(expected)) {
+    const parentPath = path.join(REPO_ROOT, parent);
+    if (!fs.existsSync(parentPath)) {
+      missing.push(parent);
+      continue;
+    }
+    for (const child of children) {
+      if (!fs.existsSync(path.join(parentPath, child))) {
+        missing.push(`${parent}${child}/`);
+      }
+    }
+  }
+
+  if (missing.length === 0) {
+    record('Repo structure', true, 'lab-files/, demos/, solutions/ all in place');
+  } else {
+    record(
+      'Repo structure',
+      false,
+      `missing: ${missing.slice(0, 3).join(', ')}${missing.length > 3 ? ' …' : ''}`,
+      'Re-clone the repo or git pull from main. The course expects the v2 layout.'
+    );
+  }
+}
+
 // -- main --
 async function main() {
   console.log('');
@@ -160,6 +228,8 @@ async function main() {
   await checkNpmRegistry();
   await checkReact19();
   await checkGenericHttps();
+  await checkMongo();
+  checkRepoStructure();
 
   console.log('─'.repeat(50));
 

@@ -316,26 +316,26 @@ npm run check
 You should see all green:
 
 ```
-✓ Node version              v22.x.x
+✓ Node version              v24.x.x   (or v22.x.x if you pinned the previous LTS)
 ✓ npm version               10.x.x
 ✓ Git installed             git version 2.45.x
 ✓ npm registry              reachable
 ✓ React 19 available        latest 19.x: 19.x.x
 ✓ General HTTPS             nodejs.org reachable
+✓ MongoDB on :27017         reachable
+✓ Repo structure            lab-files/, demos/, solutions/ all in place
 ```
 
 If any line is red, fix it and rerun. **Do not hand the VM to a student
 with a red line.** A failed setup-check at the start of class costs
 20–40 minutes of lecture time.
 
-Additional manual checks the script doesn't cover:
+The script's MongoDB check is just a TCP probe to `:27017` — it confirms
+*something* is listening, not that it's actually a healthy MongoDB. One
+extra manual check is worth doing as a smoke test for the whole stack:
 
 ```powershell
-# MongoDB service is running
-Get-Service MongoDB
-# Status should be Running
-
-# Backend boots (any lab's copy works — lab-02 is a fine smoke test)
+# Backend boots and connects to Mongo (any lab's copy works; lab-02 is fine)
 cd $env:USERPROFILE\Desktop\advanced-react-19\lab-files\lab-02\social-media\server
 npm run dev
 # Expect:
@@ -343,10 +343,15 @@ npm run dev
 #   Connected to mongodb://localhost:27017/social-network
 # Ctrl+C to stop.
 
-# Health endpoint reachable
+# Health endpoint reachable + Mongo confirmed connected
 curl http://localhost:4000/api/setup-check
-# {"ok":true,"message":"social-media backend ready",...}
+# {"ok":true,"message":"social-media backend ready","version":"2.0.0","mongo":"connected"}
 ```
+
+If `mongo` reports `disconnected`, the backend booted but Mongo isn't
+actually reachable on the default URI — usually the service isn't running.
+On Windows: `Get-Service MongoDB` should be `Running`; if not,
+`Start-Service MongoDB`.
 
 ---
 
