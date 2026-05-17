@@ -19,6 +19,8 @@ lab-files/          ← per-lab self-contained starters (lab-01/ … lab-08/)
 solutions/          ← per-lab reference solutions (use after finishing each lab)
 demos/              ← Module 3 in-class demos (instructor-led; explore on your own too)
 setup-check/        ← pre-Day-1 environment check (`npm run check`)
+AGENTS.md           ← conventions for AI assistants (Lab 1+ have you point your assistant at this)
+CLAUDE.md           ← Claude-specific filename; same content as AGENTS.md
 README.md           ← you are here
 ```
 
@@ -177,6 +179,14 @@ assistant you can drive from inside your editor or terminal. Without
 one, the AI-review techniques the course teaches don't have anything to
 review. Any of the assistants listed in the table above works — the
 course is tool-agnostic.
+
+When the lab manual tells you to give your AI assistant the conventions
+to follow, point it at [AGENTS.md](./AGENTS.md) (or
+[CLAUDE.md](./CLAUDE.md) if you're on Claude Code — it's a pointer to
+the same content). Without that, your assistant defaults to whatever it
+sees most often online: class components, `getByTestId`, `fetch` in
+`useEffect`, and the other patterns this course is teaching you to
+avoid.
 
 ## Course logistics
 
