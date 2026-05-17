@@ -55,6 +55,3 @@ If you have both the RR v7 client (on :5173) and this client (on :3000) running 
 - **Path alias** `@/` resolves to the project root
 - **Rewrites** route `/api/*` → `http://localhost:4000/api/*` so all fetches are same-origin in dev
 
-## Where this starter lives
-
-In the course materials repo, this is `instructor/starters/social-media-nextjs/`. To use it in the lab repo (`github.com/chrisminnick/advanced-react`), copy the folder contents to `social-media-nextjs/` at the lab repo root.

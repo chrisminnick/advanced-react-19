@@ -51,6 +51,3 @@ Visit `http://localhost:5173`. You'll see the placeholder home page with links t
 - **Path alias** `~/*` resolves to `./app/*` (RR v7 default)
 - **Vite proxy** routes `/api/*` → `http://localhost:4000/*` so client fetches are same-origin
 
-## Where this starter lives
-
-In the course materials repo, this is `instructor/starters/social-media-rr-v7/`. To use it in the lab repo (`github.com/chrisminnick/advanced-react`), copy the folder contents to `social-media-rr-v7/` at the lab repo root.

@@ -1,69 +1,63 @@
-# Advanced React Development
+# Advanced React Development — Student Repo
 
 **Version:** 2.0.0 (May 2026)
 **Author:** Chris Minnick · WatzThis
 
-Unified repo for the **3-day Advanced React Development course**. Holds:
+Welcome! This is the public student repository for the **3-day Advanced
+React Development course**. It's what's pre-cloned onto your lab VM and
+what you'll work in during class.
 
-- The **courseware** (slides, lab manual, instructor notes, decisions docs)
-- The **lab projects** (per-lab self-contained starters + reference solutions + Module 3 demos)
-- The **VM provisioning guide** for the training company
+The instructor materials (decks, lab handouts in markdown, instructor
+notes, solution exemplars, and the course-build sources) live in a
+separate private repository.
 
-## Repo layout at a glance
+## What's in this repo
 
 ```
-lab-files/          per-lab self-contained starters (lab-01/ … lab-08/)
-demos/              Module 3 in-class demos (routing-demo + my-next-app + my-next-routing-demo)
-solutions/          per-lab reference solutions (lab-01-modernize/, lab-02-rr-v7/, …)
-setup-check/        pre-Day-1 environment check (npm run check)
-instructor/         decks + speaker notes + setup docx
-labs/               lab handouts (Lab0N-*.md) + instructor notes + exemplars
-student/            consolidated student manual
-scripts/            repo-maintenance scripts (e.g., restructure-cleanup.{sh,ps1})
-AGENTS.md / CLAUDE.md  project context for AI assistants
-LAB-VM-SETUP.md     training-company VM provisioning guide
+student/            ← course PDFs you'll read during class
+lab-files/          ← per-lab self-contained starters (lab-01/ … lab-08/)
+solutions/          ← per-lab reference solutions (use after finishing each lab)
+demos/              ← Module 3 in-class demos (instructor-led; explore on your own too)
+setup-check/        ← pre-Day-1 environment check (`npm run check`)
+README.md           ← you are here
 ```
-
-There are no feature branches in this version of the course.
-Per-lab folders trade disk space for "no debugging anyone's git."
 
 ## Course materials
 
-| What                                                     | Where                                                                        |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Course outline (v2.0)                                    | `instructor/Advanced-React-Course-Outline-v2.docx`                           |
-| Lab manual (consolidated 8 labs)                         | `instructor/advanced-react-labs-v2.docx`                                     |
-| Combined slide deck                                      | `instructor/advanced_react_v2.pptx`                                          |
-| Per-module decks                                         | `instructor/modules/Module01-* … Module10-*.pptx`                            |
-| Per-lab markdown + instructor notes + solution exemplars | `labs/Lab01-* … Lab08-*.md`                                                  |
-| Marketing course description                             | `Advanced-React-3-Day-CourseDescription-v2.docx`                             |
-| Optional pre-work doc                                    | `Advanced-React-Pre-Work-v2.docx`                                            |
-| Student setup guide (covers what's installed on the VM)  | `instructor/Advanced-React-setup-v2.docx`                                    |
-| Training-company VM provisioning guide                   | `LAB-VM-SETUP.md`                                                            |
-| Locked design decisions                                  | `PROPOSAL-2026-Update.md`, `LAB-REPO-UPGRADE-PLAN.md`, `DRY-RUN-FINDINGS.md` |
-| AI-assistant conventions for the codebase                | `AGENTS.md`                                                                  |
+The two PDFs in [student/](./student/) are the two documents you'll
+refer to throughout the course:
+
+| File                                                                        | What it is                                                                  |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [student/advanced_react_v2_presentation.pdf](./student/advanced_react_v2_presentation.pdf) | The slide deck the instructor projects (all 10 modules, ~280 slides). Search it when you want to revisit a concept. |
+| [student/advanced-react-labs-v2.pdf](./student/advanced-react-labs-v2.pdf)                 | The lab manual — all eight labs end-to-end. Each lab has its goal, time budget, setup, numbered phases, optional stretch task, hints, and a pointer to the reference solution. |
+
+When a lab says "open the handout," it means the lab manual PDF.
 
 ## Lab files
 
-| Lab | Folder              | What's in it                                                                                  |
-| --- | ------------------- | --------------------------------------------------------------------------------------------- |
-| 1   | `lab-files/lab-01/` | `real-time-chat/` (legacy CRA chat) + `social-media/server` (auth)                            |
-| 2   | `lab-files/lab-02/` | `social-media-rr-v7/` + `social-media-nextjs/` + `social-media/server`                        |
-| 3   | `lab-files/lab-03/` | `social-media-rr-v7/` (with bloated AppContext to refactor) + `social-media/server`           |
-| 4   | `lab-files/lab-04/` | `social-media-rr-v7/` (Lab 3 Zustand state) + `social-media/server`                           |
-| 5   | `lab-files/lab-05/` | `server-components-dashboard/` (standalone)                                                   |
-| 6   | `lab-files/lab-06/` | `social-media-rr-v7/` (with seeded perf problems) + `social-media/server` (with tag stamping) |
-| 7   | `lab-files/lab-07/` | `social-media-rr-v7/` (Lab 4 TanStack Query) + `social-media/server`                          |
-| 8   | `lab-files/lab-08/` | `social-media-rr-v7/` (Lab 7 tests) + `social-media/server`                                   |
+| Lab | Folder                                  | What's in it                                                                                  |
+| --- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
+| 1   | [lab-files/lab-01/](./lab-files/lab-01/) | `real-time-chat/` (legacy CRA chat) + `social-media/server` (auth)                            |
+| 2   | [lab-files/lab-02/](./lab-files/lab-02/) | `social-media-rr-v7/` + `social-media-nextjs/` + `social-media/server`                        |
+| 3   | [lab-files/lab-03/](./lab-files/lab-03/) | `social-media-rr-v7/` (bloated AppContext to refactor) + `social-media/server`                |
+| 4   | [lab-files/lab-04/](./lab-files/lab-04/) | `social-media-rr-v7/` (Lab 3 Zustand state) + `social-media/server`                           |
+| 5   | [lab-files/lab-05/](./lab-files/lab-05/) | `server-components-dashboard/` (standalone)                                                   |
+| 6   | [lab-files/lab-06/](./lab-files/lab-06/) | `social-media-rr-v7/` (seeded perf problems) + `social-media/server` (with tag stamping)      |
+| 7   | [lab-files/lab-07/](./lab-files/lab-07/) | `social-media-rr-v7/` (Lab 4 TanStack Query) + `social-media/server`                          |
+| 8   | [lab-files/lab-08/](./lab-files/lab-08/) | `social-media-rr-v7/` (Lab 7 tests) + `social-media/server`                                   |
 
 Each lab folder is **self-contained** — its own copy of every project
-the lab needs, with whatever modifications the lab assumes (e.g., the
-Lab 6 backend stamps mock tags onto every post). Cost: disk space.
-Benefit: no branch-and-merge debugging during class.
+the lab needs, including any setup the lab assumes (e.g., the Lab 6
+backend stamps mock tags onto every post). Cost: disk space. Benefit:
+no branch-and-merge debugging during class, and if you fall behind on
+Lab N, the next lab's folder (`lab-files/lab-(N+1)/`) is a clean
+restart point.
 
 ## Solutions
 
-Per-lab reference solutions live under `solutions/`:
+After you've taken your own pass at a lab, the reference solution lives
+under [solutions/](./solutions/):
 
 | Lab | Solution folder(s)                                                                                                                              |
 | --- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -77,71 +71,132 @@ Per-lab reference solutions live under `solutions/`:
 | 8   | `solutions/lab-08-exemplar/` (Reactions feature, capstone reference)                                                                            |
 
 Each solution folder has a `README.md` explaining what it changes from
-the matching lab's starter.
+the matching lab's starter. Don't peek before you've done your own
+review — the value of the lab is in working through it yourself first.
 
 ## Demos
 
-Module 3 in-class demos live under `demos/`:
+Module 3 in-class demos live under [demos/](./demos/) and the instructor
+will walk through them during class:
 
-- `demos/routing-demo/` — RR v7 data router (loaders, actions, error boundaries)
-- `demos/my-next-app/` — Next 15 basics (Server Components + Client islands + Server Actions)
-- `demos/my-next-routing-demo/` — Next 15 routing primitives (nested layouts, dynamic segments, loading.js, error.js)
+- [demos/routing-demo/](./demos/routing-demo/) — RR v7 data router (loaders, actions, error boundaries)
+- [demos/my-next-app/](./demos/my-next-app/) — Next.js 15 basics (Server Components + Client islands + Server Actions)
+- [demos/my-next-routing-demo/](./demos/my-next-routing-demo/) — Next.js 15 routing primitives (nested layouts, dynamic segments, loading.js, error.js)
 
-Each demo's README has a 5–7 minute instructor tour.
+You're welcome to open them yourself on your own time too.
 
-## Running the course
+## Prerequisites
 
-Each lab is self-contained — open `lab-files/lab-NN/` and follow the
-handout in `labs/Lab0N-*.md`. The handouts include the exact terminal
-commands to start the backend, the client, and (where relevant) the
-chat server.
+This course assumes you already know:
 
-Pre-Day-1 environment check (everyone runs this before they touch
-anything else):
+- **React fundamentals** — function components, props, basic hooks
+  (`useState`, `useEffect`), JSX, and how a typical React app is wired
+  up. If you've shipped or maintained a React app, you're good.
+- **Modern JavaScript** — `async`/`await`, destructuring, modules,
+  arrow functions, template literals.
+- **The terminal** — running `npm install`, `npm run dev`, and
+  navigating folders with `cd`.
+- **Git basics** — `clone`, `status`, `diff`. You won't be branching
+  during class, but `git diff` shows up in Lab 1's self-review.
+- **An editor** — VS Code is what the labs assume, but any editor with
+  an integrated terminal works.
+
+You do **not** need prior experience with: React Router v7, Next.js,
+TanStack Query, Zustand, Server Components, the React Compiler, or any
+particular AI assistant. The course teaches all of those from scratch.
+
+## What's pre-installed on the lab VM
+
+If you're using a training-company-provided VM, the following is already
+set up. (If you're working from your own machine, install these
+yourself — the versions are the floor, not a ceiling.)
+
+| Software                     | Version                                                          |
+| ---------------------------- | ---------------------------------------------------------------- |
+| Operating system             | Windows 10 or 11 (x64) — Mac/Linux also work for self-study      |
+| Node.js                      | 22 LTS or newer (Node 24 LTS as of May 2026)                     |
+| npm                          | 10 or newer (ships with Node)                                    |
+| Git for Windows              | 2.45 or newer                                                    |
+| Visual Studio Code           | Latest, with: ESLint, Prettier, ES7+ React snippets, Auto Rename Tag, REST Client, GitLens, MongoDB for VS Code, Playwright |
+| Google Chrome                | Latest, with **React Developer Tools** extension                 |
+| MongoDB Community Server     | 8.x, running as a Windows service on the default port (27017)    |
+| MongoDB Compass              | Latest (used in Lab 8 to inspect the reactions schema)           |
+| AI coding assistant          | One of: Claude Code (CLI + VS Code extension), Cursor, GitHub Copilot — required for Modules 9 and Labs 1, 7B, 8 |
+| This repo                    | Pre-cloned to `C:\advanced-react-19\` (or `~/advanced-react-19/` on Mac/Linux) with `npm install` already run for every sub-project |
+
+You'll sign into the AI assistant on Day 1 with your own credentials or
+a cohort-issued account — the VM does not carry saved logins from
+previous cohorts.
+
+## Pre-Day-1 environment check
+
+Before Day 1 starts (and any time something looks off), run the
+[setup-check](./setup-check/) script:
 
 ```bash
 cd setup-check
 npm run check
 ```
 
-## Conventions
+You should see all green:
 
-- **React 19, JS-first, framework-neutral.** All starters use plain
-  JavaScript, not TypeScript. Modules cover both Next.js 15 and
-  React Router v7 framework mode.
-- **Exact version pinning.** Lab project `package.json`s pin major +
-  minor (e.g., `19.0.0`, not `^19.0.0`) for reproducibility across
-  cohorts.
-- **AI-friendly conventions.** `AGENTS.md` (and the Claude-specific
-  `CLAUDE.md` pointer) at the repo root describes the stack, the do's
-  and don'ts, and where new code goes. Module 9 + Lab 8 explicitly
-  reference this file.
-- **No feature branches.** Per-lab folders, per-lab solutions. If a
-  student falls behind, the next lab's folder is a clean restart.
+```
+✓ Node version              v24.x.x   (or v22.x.x — anything in current LTS)
+✓ npm version               10.x.x
+✓ Git installed             git version 2.45.x
+✓ npm registry              reachable
+✓ React 19 available
+✓ General HTTPS             nodejs.org reachable
+✓ MongoDB on :27017         reachable
+✓ Repo structure            lab-files/, demos/, solutions/ all in place
+```
 
-## What was retired in v2.0 (vs v1.3.0)
+If anything is red, fix it before you lose lab time to it. The error
+message tells you the remedy.
 
-- Original top-level project folders moved into `lab-files/lab-NN/`
-  and `demos/`. The old top-level copies are gone — see
-  `scripts/restructure-cleanup.sh`.
-- Feature branches and branch-materialization scripts. Replaced by
-  per-lab folders.
-- `react_ssr_example/` — React 16 + Webpack SSR demo. Replaced by
-  Server Components content in Module 6.
-- `server-components-demo/` — pre-release RSC channel + custom
-  bundler. Replaced by `lab-files/lab-05/server-components-dashboard/`.
-- `setup-test/` — v1 setup verifier. Replaced by `setup-check/`.
-- `solutions/microfrontend/` — Single-SPA. Micro-frontends cut from
-  v2.0 entirely.
+## Running a lab
 
-If you need any of these for legacy reference, the v1.3.0 tip lives in
-git history.
+Each lab is self-contained — open `lab-files/lab-NN/` and follow the
+matching section of the lab manual PDF
+([student/advanced-react-labs-v2.pdf](./student/advanced-react-labs-v2.pdf)).
+The handout has the exact terminal commands to start the backend, the
+client, and (where relevant) the chat server.
 
-## Revision history
+A typical lab boils down to:
 
-| Version       | Date      | Notes                                                                                                                                                                                                                 |
-| ------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v1.0 – v1.3.0 | 2023–2024 | Original three-day course. React 18, CRA, plain Redux, Single-SPA.                                                                                                                                                    |
-| v2.0          | May 2026  | Full overhaul. React 19, Server Components, the React Compiler, AI-assisted dev thread, Vitest/RTL/MSW testing module. Course rebalanced to 54% hands-on. Repo restructured to per-lab folders (no feature branches). |
+1. Open `lab-files/lab-NN/` in your editor.
+2. Make a backup copy of the folder before you change anything — that
+   way you can recover if you wreck the codebase past saving.
+3. Work through the lab phases in order, editing files in place.
+4. Compare your finished work against `solutions/lab-NN-*/` when done.
 
-See `PROPOSAL-2026-Update.md` for the full v1 → v2 design rationale.
+## A note on AI assistants
+
+Modules 9 and Labs 1, 7 (Part B), and 8 assume you have an AI coding
+assistant you can drive from inside your editor or terminal. Without
+one, the AI-review techniques the course teaches don't have anything to
+review. Any of the assistants listed in the table above works — the
+course is tool-agnostic.
+
+## Course logistics
+
+- **Pace:** ~11 hours of hands-on lab time across the three days (more
+  than half of the course). Lectures are interleaved with the labs;
+  it's not "lecture all morning, labs all afternoon."
+- **Working alone or in pairs:** every lab works either way. Pick what
+  fits the room.
+- **Falling behind:** the next lab's `lab-files/lab-(N+1)/` folder is a
+  clean restart point — it already contains "what Lab N's solution
+  looks like" plus any setup the next lab adds.
+
+## Reporting problems
+
+If you hit a real bug in the lab files (not a "my code doesn't work"
+issue — those are what the AI assistant and your instructor are for),
+open an issue at <https://github.com/chrisminnick/advanced-react-19/issues>
+or tell your instructor and they'll route it.
+
+## License
+
+Course materials © Chris Minnick / WatzThis. The lab project code is
+provided for use during this course and for personal study afterward.

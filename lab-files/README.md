@@ -21,9 +21,11 @@ There are no feature branches in this version of the course. For each
 lab:
 
 1. Open the corresponding `lab-files/lab-NN/` folder in your editor.
-2. Inside, run `npm install` in each sub-folder you'll use.
-3. Edit in place. The lab handout in `labs/Lab0N-*.md` walks you
-   through what to change.
+2. Inside, run `npm install` in each sub-folder you'll use. (On the lab
+   VM, this has already been done for you.)
+3. Edit in place. The lab handout — your section of
+   `student/advanced-react-labs-v2.pdf` — walks you through what to
+   change.
 4. When you finish (or get stuck), the reference solution lives at
    `solutions/lab-NN-*/`.
 

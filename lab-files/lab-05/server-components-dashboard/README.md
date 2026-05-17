@@ -43,6 +43,3 @@ The first time you hit the page you'll see the stub. The placeholder data layer 
 - **`'server-only'`** at the top of `lib/data.js` to prevent transitive client imports
 - **Path alias** `@/` resolves to the project root, so `import { foo } from '@/lib/data'` works
 
-## When this starter changes
-
-This scaffold lives in the course materials repo under `instructor/starters/server-components-dashboard/`. The "real" copy belongs in the lab repo (`github.com/chrisminnick/advanced-react`). When you copy from here to there, you can drop the `instructor/starters/` parent path — the project sits at the lab repo root.

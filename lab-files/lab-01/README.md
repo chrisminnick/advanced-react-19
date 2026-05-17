@@ -32,8 +32,8 @@ chat in two different browsers to talk to yourself.
 
 The chat client is **intentionally legacy** — class components,
 `componentDidMount`, race-prone `setState`, `forwardRef`. Lab 1 has
-you modernize all of it. See `labs/Lab01-Modernize-Chat-App.md` for
-the full handout.
+you modernize all of it. See the **Lab 1** section of
+`student/advanced-react-labs-v2.pdf` for the full handout.
 
 ## Reference solution
 

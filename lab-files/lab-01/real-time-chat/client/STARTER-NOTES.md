@@ -28,7 +28,7 @@ You'll modernize this codebase to:
 
 …using an AI assistant for the first pass, and then reviewing and correcting what the AI got wrong.
 
-See `labs/Lab01-Modernize-Chat-App.md` in the course materials root for the full lab instructions.
+See the **Lab 1** section of `student/advanced-react-labs-v2.pdf` (at the repo root) for the full lab instructions.
 
 ## Files that are class components
 
