@@ -1,9 +1,28 @@
 # Lab 3 solution — Redux Toolkit
 
-Branches from `lab-03-baseline`. Replaces the bloated AppContext with two
-RTK slices, configured into one store, served via `<Provider>`.
+Self-contained, runnable reference solution for Lab 3 (RTK variant).
+Replaces the bloated `AppContext` with three RTK slices, configured into
+one store, served via `<Provider>`.
 
-## What changes vs. baseline
+## How to run
+
+Two terminals.
+
+```bash
+# Terminal 1 — Express backend (port 4000)
+cd server
+npm install
+npm run dev
+
+# Terminal 2 — RR v7 client (port 5173)
+# from this solution folder
+npm install
+npm run dev
+```
+
+Open <http://localhost:5173>. MongoDB on `:27017` required.
+
+## What changes vs. lab-03-baseline
 
 | File | Change |
 |---|---|
@@ -26,9 +45,10 @@ RTK slices, configured into one store, served via `<Provider>`.
   `setDrafts`.
 - `useSelector((s) => s.ui.sidebarOpen)` is the equivalent of Zustand's
   per-slice selector — use it, don't read the whole state.
-- For Lab 4, the same store grows an RTK Query `createApi` for posts/me. The
-  conceptual win of RTK is that server state lives in the same toolset as
-  client state, so you don't end up with three concurrent state libraries.
-- The `<Provider>` wraps the route element. RR v7 components hydrate on the
-  client, so `react-redux`'s context works the same way it would in a
-  classic SPA.
+- For Lab 4, the same store grows an RTK Query `createApi` for posts/me.
+  The conceptual win of RTK is that server state lives in the same
+  toolset as client state, so you don't end up with three concurrent
+  state libraries.
+- The `<Provider>` wraps the route element. RR v7 components hydrate on
+  the client, so `react-redux`'s context works the same way it would in
+  a classic SPA.

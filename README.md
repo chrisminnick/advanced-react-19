@@ -72,9 +72,12 @@ under [solutions/](./solutions/):
 | 7   | `solutions/lab-07-tests/`, `solutions/lab-07-stretch/` (Playwright e2e)                                                                         |
 | 8   | `solutions/lab-08-exemplar/` (Reactions feature, capstone reference)                                                                            |
 
-Each solution folder has a `README.md` explaining what it changes from
-the matching lab's starter. Don't peek before you've done your own
-review — the value of the lab is in working through it yourself first.
+Each solution folder is **self-contained and runnable** — its own copy
+of the client, the Express backend (where applicable), and the right
+`package.json` with every dependency pinned. The `README.md` in each
+folder has the exact `npm install && npm run dev` commands. Don't peek
+before you've done your own review — the value of the lab is in working
+through it yourself first.
 
 ## Demos
 

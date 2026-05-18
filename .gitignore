@@ -12,9 +12,15 @@ node_modules/
 dist/
 build/
 .next/
+.react-router/
 .cache/
 .turbo/
 .parcel-cache/
+
+# Test outputs
+coverage/
+playwright-report/
+test-results/
 
 # Env
 .env

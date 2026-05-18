@@ -15,6 +15,4 @@ import { index } from '@react-router/dev/routes';
 //     route('home', 'routes/home.jsx'),
 //   ];
 
-export default [
-  index('routes/_index.jsx'),
-];
+export default [index('routes/_index.jsx')];

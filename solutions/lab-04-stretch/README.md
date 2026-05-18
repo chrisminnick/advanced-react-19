@@ -1,21 +1,39 @@
 # Lab 4 stretch — infinite-scroll feed
 
-Branches from `solution/lab-04-tanstack-query`. Adds cursor-based pagination
-to the backend, an `useInfiniteQuery` hook, and an IntersectionObserver-based
-"load more when you scroll near the bottom" trigger.
+Self-contained, runnable reference solution for the Lab 4 stretch task.
+Adds cursor-based pagination to the backend, a `useInfiniteQuery` hook,
+and an IntersectionObserver-based "load more when you scroll near the
+bottom" trigger.
 
-The lab handout claims the backend already supports `?cursor=&limit=`. It
-didn't — this stretch solution adds it. (Fold the backend change into the
-regular `social-media/server` if you want every cohort to have it
-available; otherwise keep it on this branch only.)
+## How to run
 
-## What changes
+Two terminals.
+
+```bash
+# Terminal 1 — Express backend (port 4000)
+cd server
+npm install
+npm run dev
+
+# Terminal 2 — RR v7 client (port 5173)
+# from this solution folder
+npm install
+npm run dev
+```
+
+Open <http://localhost:5173>. MongoDB on `:27017` required.
+
+Note: the backend in this solution is **modified** — `GET /api/posts`
+supports `?cursor=` and `?limit=` query params and returns
+`{ items, nextCursor }` instead of a flat array.
+
+## What changes vs. lab-04-tanstack-query
 
 ### Backend
 
 | File | Change |
 |---|---|
-| `social-media/server/routes/posts.js` | `GET /api/posts` now reads `?cursor=` and `?limit=`; returns `{ items, nextCursor }`. |
+| `server/routes/posts.js` | `GET /api/posts` now reads `?cursor=` and `?limit=`; returns `{ items, nextCursor }`. |
 
 ### Client
 

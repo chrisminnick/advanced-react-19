@@ -1,9 +1,7 @@
 # Lab 5 solution — Server Components dashboard
 
-Branches from `main` (the `server-components-dashboard/` starter on main is
-the input — the solution doesn't depend on any other lab).
-
-Adds the four required pieces to the dashboard:
+Self-contained, runnable reference solution for Lab 5. Adds the four
+required pieces to the dashboard:
 
 1. Three Server-Component stat cards (open / in-progress / done).
 2. Server-Component activity feed and team list.
@@ -13,6 +11,19 @@ Adds the four required pieces to the dashboard:
    accepts Server Components as `children`.
 
 Plus a `BOUNDARY-NOTES.md` explaining each `'use client'` decision.
+
+## How to run
+
+Next.js is full-stack, so just one terminal — no separate backend.
+
+```bash
+npm install
+npm run dev
+```
+
+Open <http://localhost:3000/dashboard>. The dashboard's data sources are
+all in-process (see [`lib/data.js`](./lib/data.js)) — no MongoDB or
+external API needed.
 
 ## File map
 

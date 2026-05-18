@@ -1,9 +1,33 @@
 # Lab 6 solution — Profile and Optimize
 
-Branches from `lab-06-baseline`. Applies the four optimizations the
-exemplar lists (A, B, C, D), plus the virtualization stretch.
+Self-contained, runnable reference solution for Lab 6. Applies the four
+optimizations the exemplar lists (A, B, C, D), plus the virtualization
+stretch.
 
-## What changes vs. baseline
+## How to run
+
+Two terminals.
+
+```bash
+# Terminal 1 — Express backend (port 4000)
+# (same modified server as lab-06-baseline — stamps `tags` onto every post)
+cd server
+npm install
+npm run dev
+
+# Terminal 2 — RR v7 client (port 5173)
+# from this solution folder
+npm install
+npm run dev
+```
+
+Open <http://localhost:5173>. To verify the optimizations, profile the
+home page typing in the search box and compare against the
+`lab-06-baseline/` numbers — `lab06-results.md` has the before/after.
+
+MongoDB on `:27017` required.
+
+## What changes vs. lab-06-baseline
 
 | File | Change | Optimization |
 |---|---|---|

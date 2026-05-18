@@ -1,9 +1,37 @@
 # Lab 7 solution — Test suite from scratch
 
-Branches from `solution/lab-04-tanstack-query`. Adds Vitest + React Testing
-Library + MSW v2, a baseline suite the instructor wrote by hand, an
-AI-extended suite (paste from a real AI session), and a `lab07-review.md`
-that marks every AI-generated test as **keep**, **refactor**, or **delete**.
+Self-contained, runnable reference solution for Lab 7. Adds Vitest +
+React Testing Library + MSW v2, a baseline suite the instructor wrote
+by hand, an AI-extended suite (paste from a real AI session), and a
+`lab07-review.md` that marks every AI-generated test as **keep**,
+**refactor**, or **delete**.
+
+## How to run
+
+The unit tests don't need a backend — MSW intercepts at the network
+boundary.
+
+```bash
+npm install
+npm test          # interactive watch mode
+npm run test:run  # single CI-style run
+```
+
+To also boot the app locally, two more terminals:
+
+```bash
+# Terminal 1 — Express backend (port 4000)
+cd server
+npm install
+npm run dev
+
+# Terminal 2 — RR v7 client (port 5173)
+# from this solution folder
+npm run dev
+```
+
+Open <http://localhost:5173>. MongoDB on `:27017` required for the
+running app (not for tests).
 
 ## What changes vs. lab-04-tanstack-query
 
@@ -14,7 +42,7 @@ that marks every AI-generated test as **keep**, **refactor**, or **delete**.
 | `app/test/handlers.js` | NEW — MSW request handlers covering /api/login, /api/me, /api/posts. |
 | `app/test/renderWithProviders.jsx` | NEW — wraps subject in QueryClientProvider + MemoryRouter. |
 | `app/components/NewPostForm.test.jsx` | NEW — baseline + reviewed AI extensions. |
-| `app/components/Login.test.jsx` | NEW — baseline + reviewed AI extensions. |
+| `app/routes/login.test.jsx` | NEW — baseline + reviewed AI extensions. |
 | `app/components/PostsFeed.test.jsx` | NEW — pure-render tests, no providers needed. |
 | `lab07-review.md` | NEW — review of every AI-generated test in the suite. |
 | `package.json` | Adds Vitest deps + `test` script. |

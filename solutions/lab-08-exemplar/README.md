@@ -1,11 +1,40 @@
 # Lab 8 exemplar — Reactions on posts (Option B)
 
-Branches from `solution/lab-07-tests`. Implements Option B from the Lab 8
-backlog: each post supports three reactions (heart, laugh, surprise);
-users can toggle each independently with optimistic updates.
+Self-contained, runnable reference solution for Lab 8. Implements
+Option B from the Lab 8 backlog: each post supports three reactions
+(heart, laugh, surprise); users can toggle each independently with
+optimistic updates.
 
 This isn't THE solution — Lab 8 is intentionally open-ended. It's a
 **benchmark** showing the shape and depth of the deliverables.
+
+## How to run
+
+Two terminals (the server is modified — adds a `/api/posts/:id/reactions`
+endpoint and a reactions field on the Post model).
+
+```bash
+# Terminal 1 — Express backend (port 4000)
+cd server
+npm install
+npm run dev
+
+# Terminal 2 — RR v7 client (port 5173)
+# from this solution folder
+npm install
+npm run dev
+```
+
+Open <http://localhost:5173>. Sign up, log in, click any reaction button
+on a post — it should toggle instantly (optimistic), then settle.
+
+Run the reactions test in isolation:
+
+```bash
+npm run test:run -- ReactionBar
+```
+
+MongoDB on `:27017` required.
 
 ## What changes vs. lab-07-tests
 
@@ -37,8 +66,8 @@ This isn't THE solution — Lab 8 is intentionally open-ended. It's a
 ## Things to point out to students
 
 - The `reactions` cache shape is an object keyed by reaction type, with
-  `count` and `mine`. Picking that shape early made the optimistic update
-  trivial and the server response shape match the cache shape.
+  `count` and `mine`. Picking that shape early made the optimistic
+  update trivial and the server response shape match the cache shape.
 - The hook handles BOTH add and remove with a single `mutate({ type,
   desired })` call. That avoids duplicating the optimistic logic.
 - The self-review surfaces a real bug: the AI's first version mutated

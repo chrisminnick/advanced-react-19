@@ -1,8 +1,20 @@
 # Lab 5 streaming stretch — multiple Suspense boundaries
 
-Branches from `solution/lab-05-dashboard`. Refactors the dashboard so each
-slow section streams in independently behind its own Suspense boundary,
-instead of the whole page waiting for the slowest data call.
+Self-contained, runnable reference solution for the Lab 5 stretch task.
+Refactors the dashboard so each slow section streams in independently
+behind its own Suspense boundary, instead of the whole page waiting for
+the slowest data call.
+
+## How to run
+
+```bash
+npm install
+npm run dev
+```
+
+Open <http://localhost:3000/dashboard>. Watch the page paint in stages —
+the shell + skeletons appear first, then each section fills in as its
+data resolves.
 
 ## What changes vs. lab-05-dashboard
 
@@ -34,8 +46,8 @@ chunks).
 
 - The page itself goes from `async` to a plain function. The `await`s
   move into the child Server Components.
-- **Each `<Suspense>` is a streaming boundary.** Without one, React would
-  still wait on the whole subtree before flushing.
+- **Each `<Suspense>` is a streaming boundary.** Without one, React
+  would still wait on the whole subtree before flushing.
 - The skeletons are themselves Server Components — they ship as HTML
   with no client JS, just like the real components they replace.
 - `<FilterToggle>` (a Client Component) wraps `<Suspense>`-wrapped
