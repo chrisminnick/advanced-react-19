@@ -38,6 +38,7 @@ router.post('/:type', validateToken, async (req, res) => {
     const post = await Post.findById(id);
     if (!post) return res.status(404).json({ message: 'Post not found' });
 
+    ensureReactions(post);
     const slot = post.reactions[type];
     if (!slot.userIds.includes(me)) {
       slot.userIds.push(me);
@@ -61,6 +62,7 @@ router.delete('/:type', validateToken, async (req, res) => {
     const post = await Post.findById(id);
     if (!post) return res.status(404).json({ message: 'Post not found' });
 
+    ensureReactions(post);
     const slot = post.reactions[type];
     const before = slot.userIds.length;
     slot.userIds = slot.userIds.filter((u) => u !== me);
@@ -74,6 +76,18 @@ router.delete('/:type', validateToken, async (req, res) => {
     res.status(500).json({ message: `Failed to remove reaction: ${err.message}` });
   }
 });
+
+// Backfill missing reaction buckets on posts created before the schema
+// gained reactions. Mutates the doc in place.
+function ensureReactions(post) {
+  if (!post.reactions) post.reactions = {};
+  for (const t of VALID_TYPES) {
+    if (!post.reactions[t]) {
+      post.reactions[t] = { count: 0, userIds: [] };
+      post.markModified(`reactions.${t}`);
+    }
+  }
+}
 
 function reactionsResponse(post, me) {
   const out = {};

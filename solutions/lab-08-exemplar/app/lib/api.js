@@ -5,6 +5,11 @@
 const BASE = '/api';
 
 async function request(path, init = {}) {
+
+  if (typeof window === "undefined") {
+    // Suspend forever during SSR; the client re-runs this fetch after hydration.
+    return new Promise(() => {});
+  }
   const res = await fetch(`${BASE}${path}`, {
     credentials: 'include',
     headers: {

@@ -9,6 +9,28 @@ const router = express.Router();
 
 const SECRET = process.env.ACCESS_TOKEN_SECRET ?? 'dev-only-not-for-production';
 
+const REACTION_TYPES = ['heart', 'laugh', 'surprise'];
+
+// Shape reactions the way ReactionBar expects: { type: { count, mine } }.
+// `me` is the current user's identifier so we can compute `mine` per
+// request. Without including this on every post in the list response, every
+// refetch would wipe out the optimistic update from useToggleReaction.
+function reactionsFor(post, me) {
+  const out = {};
+  for (const t of REACTION_TYPES) {
+    const slot = post?.reactions?.[t] ?? { count: 0, userIds: [] };
+    out[t] = {
+      count: slot.count ?? 0,
+      mine: Array.isArray(slot.userIds) ? slot.userIds.includes(me) : false,
+    };
+  }
+  return out;
+}
+
+function userKey(req) {
+  return req.user?.email ?? req.user?.sub ?? 'anonymous';
+}
+
 // Auth middleware. Accepts either:
 //   - Bearer token in the Authorization header (legacy chat client)
 //   - session cookie (new social-media-rr-v7 / Next.js clients)
@@ -49,6 +71,7 @@ router.post('/', validateToken, async (req, res) => {
       body: created.body,
       author: created.author,
       createdAt: created.createdAt,
+      reactions: reactionsFor(created, userKey(req)),
     });
   } catch (err) {
     res.status(500).json({ message: `Failed to create post: ${err.message}` });
@@ -77,6 +100,7 @@ router.put('/:id', validateToken, async (req, res) => {
 // List all posts
 router.get('/', validateToken, async (req, res) => {
   try {
+    const me = userKey(req);
     const posts = await Post.find().sort({ createdAt: -1 }).lean();
     res.status(200).json(
       posts.map((p) => ({
@@ -85,6 +109,7 @@ router.get('/', validateToken, async (req, res) => {
         body: p.body,
         author: p.author,
         createdAt: p.createdAt,
+        reactions: reactionsFor(p, me),
       }))
     );
   } catch (err) {
@@ -105,6 +130,7 @@ router.get('/:id', validateToken, async (req, res) => {
       body: post.body,
       author: post.author,
       createdAt: post.createdAt,
+      reactions: reactionsFor(post, userKey(req)),
     });
   } catch (err) {
     res.status(500).json({ message: `Failed to fetch post: ${err.message}` });
