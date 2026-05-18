@@ -28,11 +28,11 @@ async function loginAction(prevState, formData) {
     return { error: err.message };
   }
 
-  setSessionCookie(token);
+  await setSessionCookie(token);
   redirect(next);
 }
 
-export default function LoginPage({ searchParams }) {
-  const next = searchParams?.next ?? '/home';
+export default async function LoginPage({ searchParams }) {
+  const { next = '/home' } = await searchParams;
   return <LoginForm action={loginAction} next={next} />;
 }

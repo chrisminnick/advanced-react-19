@@ -13,17 +13,20 @@ const BASE_OPTIONS = {
   secure: process.env.NODE_ENV === 'production',
 };
 
-export function setSessionCookie(token) {
-  cookies().set(SESSION_COOKIE, token, {
+export async function setSessionCookie(token) {
+  const store = await cookies();
+  store.set(SESSION_COOKIE, token, {
     ...BASE_OPTIONS,
     maxAge: 24 * 60 * 60, // 24h, matching the backend's TOKEN_TTL
   });
 }
 
-export function clearSessionCookie() {
-  cookies().delete(SESSION_COOKIE);
+export async function clearSessionCookie() {
+  const store = await cookies();
+  store.delete(SESSION_COOKIE);
 }
 
-export function getSessionToken() {
-  return cookies().get(SESSION_COOKIE)?.value ?? null;
+export async function getSessionToken() {
+  const store = await cookies();
+  return store.get(SESSION_COOKIE)?.value ?? null;
 }

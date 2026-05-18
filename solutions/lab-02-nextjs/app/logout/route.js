@@ -11,6 +11,6 @@ export async function POST(request) {
   } catch {
     // Even if the backend errored, clear locally.
   }
-  clearSessionCookie();
+  await clearSessionCookie();
   return NextResponse.redirect(new URL('/login', request.url), { status: 303 });
 }
