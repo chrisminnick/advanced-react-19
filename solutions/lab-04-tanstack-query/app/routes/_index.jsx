@@ -3,17 +3,16 @@ import { Link } from 'react-router';
 export function meta() {
   return [
     { title: 'social-media-rr-v7' },
-    { name: 'description', content: 'Advanced React Lab Solution — RR v7 framework mode' },
+    { name: 'description', content: 'social-media-rr-v7 (Lab 4 solution &mdash; TanStack Query)' },
   ];
 }
 
 export default function Index() {
   return (
     <main>
-      <h1>social-media-rr-v7 (Lab 2 solution)</h1>
+      <h1>social-media-rr-v7 (Lab 4 solution &mdash; TanStack Query)</h1>
       <p>
-        This branch is the reference solution for Lab 2 Part A. The four routes
-        the lab asks you to implement are now live.
+        Reference solution for Lab 4. Posts and user data moved off the loader and into TanStack Query; the home loader only does the auth gate now. Create-post uses an optimistic update; the feed is wrapped in Suspense + ErrorBoundary.
       </p>
 
       <ul className="lab-list">
@@ -24,8 +23,8 @@ export default function Index() {
       </ul>
 
       <div className="callout">
-        <strong>Backend not running?</strong> Make sure
-        <code> social-media/server </code> is started — this client depends on it.
+        <strong>Backend not running?</strong> Make sure the
+        <code> server </code> folder is started — this client depends on it.
       </div>
     </main>
   );
