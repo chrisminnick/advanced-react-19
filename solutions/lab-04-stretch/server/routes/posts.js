@@ -31,6 +31,14 @@ function validateToken(req, res, next) {
 // Create a new post
 router.post('/', validateToken, async (req, res) => {
   try {
+    // Demo-only rollback trigger for Lab 4 (TanStack Query optimistic updates).
+    // Posting a body of "boom" forces a 500 so students can verify their
+    // mutation's onError rollback path. Remove if you don't want this in
+    // your own project — it's only here for the course.
+    const _body = req.body.body ?? req.body.text ?? '';
+    if (typeof _body === 'string' && _body.trim().toLowerCase() === 'boom') {
+      return res.status(500).json({ message: 'Boom — simulated server error for the Lab 4 rollback demo.' });
+    }
     const post = new Post({
       title: req.body.title,
       body: req.body.body ?? req.body.text,
