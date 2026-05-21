@@ -8,12 +8,11 @@
 
 const BASE = '/api';
 
+// Browser fetch client. Posts are prefetched on the server in the home
+// loader and handed to the client via dehydrate()/HydrationBoundary, so
+// useSuspenseQuery resolves from cache during SSR and never calls these
+// functions on the server. No SSR branch is needed here.
 async function request(path, init = {}) {
-
-  if (typeof window === "undefined") {
-    // Suspend forever during SSR; the client re-runs this fetch after hydration.
-    return new Promise(() => {});
-  }
   const res = await fetch(`${BASE}${path}`, {
     credentials: 'include',
     headers: {
