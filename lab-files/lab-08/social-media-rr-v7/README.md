@@ -54,4 +54,3 @@ Visit `http://localhost:5173`. You'll see the placeholder home page with links t
 - **JavaScript, not TypeScript** — per the course's locked decision
 - **Path alias** `~/*` resolves to `./app/*` (RR v7 default)
 - **Vite proxy** routes `/api/*` → `http://localhost:4000/*` so client fetches are same-origin
-
