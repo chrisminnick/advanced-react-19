@@ -1,5 +1,9 @@
 # social-media-rr-v7 — React Router v7 framework-mode client
 
+For Lab 8, the shared feature menu lives in `../lab08-backlog.md`.
+Pick one option from that backlog, write `lab08-spec.md`, implement the
+feature, add tests, then write `lab08-self-review.md`.
+
 This is the workhorse React Router v7 client used by **Labs 2 through 7** of the Advanced React course (v2.0). It connects to the shared `social-media/server` backend.
 
 ## What's intentionally here
